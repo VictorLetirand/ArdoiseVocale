@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'post.dart';
-import 'login.dart';
 
 class PostList extends StatefulWidget {
   final List<Post> listItems;
