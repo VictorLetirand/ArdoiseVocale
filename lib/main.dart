@@ -1,3 +1,4 @@
+import 'package:ardoise_vocale/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: LoginPage(),
     );
   }
 }
