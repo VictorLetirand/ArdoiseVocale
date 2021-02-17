@@ -22,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('hello Men')),
+      appBar: AppBar(title: Text('Ardoise Vocale')),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -30,8 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: <Color>[
-                    Colors.blue[900],
-                    Colors.blue[300],
+                    Color.fromRGBO(176, 202, 204, 1.0),
+                    Color.fromRGBO(61, 109, 113, 1.0),
                   ],
                 ),
               ),
@@ -39,12 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: <Widget>[
                     Material(
-                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(100.0)),
                       elevation: 10,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
-                          'images/flutter-logo.png',
+                          'images/logo-transparent.png',
                           width: 80,
                           height: 80,
                         ),
