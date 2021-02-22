@@ -4,6 +4,10 @@ import 'textImputWidget.dart';
 import 'postList.dart';
 import 'customListTile.dart';
 import 'customListSwitch.dart';
+import 'substring_highlighted.dart';
+import 'speech_api.dart';
+import 'package:avatar_glow/avatar_glow.dart';
+import 'utils.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -12,6 +16,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Post> posts = [];
+  String text = 'Cliquez sur le bouton et commencez à parler';
+  bool isListening = false;
 
   void newPost(String text) {
     this.setState(() {
@@ -22,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Ardoise Vocale')),
+      appBar: AppBar(title: Text('hello Men')),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -30,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: <Color>[
-                    Color.fromRGBO(176, 202, 204, 1.0),
-                    Color.fromRGBO(61, 109, 113, 1.0),
+                    Colors.blue[900],
+                    Colors.blue[300],
                   ],
                 ),
               ),
@@ -39,12 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: <Widget>[
                     Material(
-                      borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
                       elevation: 10,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
-                          'images/logo-transparent.png',
+                          'images/flutter-logo.png',
                           width: 80,
                           height: 80,
                         ),
@@ -80,9 +86,43 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: <Widget>[
           Expanded(child: PostList(this.posts)),
+          SingleChildScrollView(
+            reverse: true,
+            padding: const EdgeInsets.all(30).copyWith(bottom: 150),
+            child: SubstringHighlight(
+              text: text,
+              terms: Command.all,
+              textStyle: TextStyle(
+                fontSize: 32.0,
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+              ),
+              textStyleHighlight: TextStyle(
+                fontSize: 32.0,
+                color: Colors.red,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
           TextInputWidget(this.newPost),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: AvatarGlow(
+        animate: isListening,
+        endRadius: 75,
+        glowColor: Theme.of(context).primaryColor,
+        child: FloatingActionButton(
+          child: Icon(isListening ? Icons.mic : Icons.mic_none, size: 36),
+          onPressed: toggleRecording,
+        ),
+      ),
     );
   }
+
+  Future toggleRecording() => SpeechApi.toggleRecording(
+      onResult: (text) => this.text = text,
+      onListening: (isListening) {
+        setState(() => this.isListening = isListening);
+      });
 }
