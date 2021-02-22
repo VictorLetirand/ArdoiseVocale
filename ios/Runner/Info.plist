@@ -41,5 +41,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Speech Recognition is required</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphose is required to record audio</string>
 </dict>
 </plist>
