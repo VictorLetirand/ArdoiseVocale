@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
-                          'images/flutter-logo.png',
+                          'images/logo-transparent.png',
                           width: 80,
                           height: 80,
                         ),
