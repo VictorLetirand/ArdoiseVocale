@@ -28,7 +28,30 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('hello Men')),
+      appBar: AppBar(
+        title: Text("Ardoise Vocale"),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  print("rien");
+                },
+                child: Icon(
+                  Icons.zoom_in,
+                  size: 26.0,
+                ),
+              )),
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  print("object");
+                },
+                child: Icon(Icons.zoom_out),
+              )),
+        ],
+      ),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
