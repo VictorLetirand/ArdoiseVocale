@@ -23,6 +23,7 @@ environment:
 dependencies:
   lite_rolling_switch: ^0.1.1
   carousel_slider: ^3.0.0
+  flutter_chat_bubble: ^1.0.2
   flutter:
     sdk: flutter
 

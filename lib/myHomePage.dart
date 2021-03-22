@@ -19,7 +19,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void newPost(String text) {
     this.setState(() {
-      posts.add(new Post(text, "Victor"));
+      posts.add(new Post(text, "ecris"));
+    });
+  }
+
+  void newPostVoc(String text) {
+    this.setState(() {
+      posts.add(new Post(text, "Vocal"));
     });
   }
 
@@ -106,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: Colors.green,
                   onPressed: () {
                     if (text != "") {
-                      newPost(text);
+                      newPostVoc(text);
                     }
                   }),
             ],

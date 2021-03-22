@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_bubble/bubble_type.dart';
+import 'package:flutter_chat_bubble/chat_bubble.dart';
+import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'post.dart';
 
 class PostList extends StatefulWidget {
@@ -21,31 +24,40 @@ class _PostListState extends State<PostList> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: this.widget.listItems.length,
+      // ignore: missing_return
       itemBuilder: (context, index) {
         var post = this.widget.listItems[index];
-        return Card(
-            child: Row(
-          children: <Widget>[
-            Expanded(
-                child: ListTile(
-              title: Text(post.body),
-              subtitle: Text(post.author),
-            )),
-            Row(
-              children: <Widget>[
-                Container(
-                  child: Text(post.likes.toString(),
-                      style: TextStyle(fontSize: 20)),
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+        if (post.provenance == 'Vocal') {
+          return ChatBubble(
+              clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
+              margin: EdgeInsets.only(top: 20),
+              backGroundColor: Color(0xffE7E7ED),
+              child: Container(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.7,
                 ),
-                IconButton(
-                    icon: Icon(Icons.thumb_up),
-                    onPressed: () => this.like(post.likePost),
-                    color: post.userLiked ? Colors.green : Colors.black)
-              ],
-            )
-          ],
-        ));
+                child: Text(
+                  post.body,
+                  style: TextStyle(color: Colors.black),
+                ),
+              ));
+        } else {
+          return ChatBubble(
+            clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
+            alignment: Alignment.topRight,
+            margin: EdgeInsets.only(top: 20),
+            backGroundColor: Colors.blue,
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width * 0.7,
+              ),
+              child: Text(
+                post.body,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
       },
     );
   }
