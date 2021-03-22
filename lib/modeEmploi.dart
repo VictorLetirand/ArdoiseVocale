@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'myHomePage.dart';
-import 'post.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class ModeEmploi extends StatefulWidget {
@@ -9,16 +8,6 @@ class ModeEmploi extends StatefulWidget {
 }
 
 class _ModeEmploi extends State<ModeEmploi> {
-  List<Post> posts = [];
-  String text = 'Cliquez sur le bouton et commencez à parler';
-  bool isListening = false;
-
-  void newPost(String text) {
-    this.setState(() {
-      posts.add(new Post(text, "Victor"));
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
