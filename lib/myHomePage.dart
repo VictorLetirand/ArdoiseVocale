@@ -149,6 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               FloatingActionButton(
+                  heroTag: "bouton annuler",
                   child: Icon(Icons.cancel),
                   mini: true,
                   backgroundColor: Colors.red,
@@ -156,10 +157,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     text = 'Appuyez pour parler';
                   }),
               FloatingActionButton(
+                heroTag: "bouton parler",
                 child: Icon(isListening ? Icons.mic : Icons.mic_none, size: 36),
                 onPressed: toggleRecording,
               ),
               FloatingActionButton(
+                  heroTag: "bouton Valider",
                   child: Icon(Icons.check),
                   mini: true,
                   backgroundColor: Colors.green,
