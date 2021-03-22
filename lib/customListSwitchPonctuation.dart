@@ -3,12 +3,13 @@ import 'package:flutter/rendering.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 // ignore: must_be_immutable
-class CustomListSwitch extends StatelessWidget {
+class CustomListSwitchPonctuation extends StatelessWidget {
   IconData icon;
   String text;
   IconData iconOn;
+  bool ponctuation = true;
 
-  CustomListSwitch(this.icon, this.text, this.iconOn);
+  CustomListSwitchPonctuation(this.icon, this.text, this.iconOn);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class CustomListSwitch extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     LiteRollingSwitch(
-                      value: true,
+                      value: ponctuation,
                       textOn: "On",
                       textOff: "Off",
                       colorOn: Colors.greenAccent,
@@ -48,7 +49,15 @@ class CustomListSwitch extends StatelessWidget {
                       iconOn: iconOn,
                       iconOff: Icons.block,
                       textSize: 18.0,
-                      onChanged: (bool position) {},
+                      onChanged: (bool position) {
+                        if (position == ponctuation) {
+                          ponctuation = true;
+                          print("ok");
+                        } else {
+                          ponctuation = false;
+                          print("no");
+                        }
+                      },
                     ),
                   ],
                 ),

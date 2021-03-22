@@ -1,7 +1,8 @@
+import 'package:ardoise_vocale/customListSwitchPonctuation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'customListSwitch.dart';
+import 'customListSwitchSupprime.dart';
 import 'customListTile.dart';
 import 'modeEmploi.dart';
 
@@ -59,8 +60,9 @@ class MyDrawer extends StatelessWidget {
               'Changer couleur du texte vocal', () => {}),
           CustomListTile(Icons.color_lens_rounded,
               'Changer couleur du texte écrit', () => {}),
-          CustomListSwitch(Icons.delete, 'Effacer en touchant', Icons.delete),
-          CustomListSwitch(Icons.priority_high_sharp, 'Ponctuation',
+          CustomListSwitchSupprime(
+              Icons.delete, 'Effacer en touchant', Icons.delete),
+          CustomListSwitchPonctuation(Icons.priority_high_sharp, 'Ponctuation',
               Icons.priority_high_sharp),
           CustomListTile(Icons.mail, 'Envoi par Mail', () => {}),
           CustomListTile(
