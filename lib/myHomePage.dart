@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'myDrawer.dart';
 import 'post.dart';
+import 'police.dart';
 import 'textImputWidget.dart';
 import 'postList.dart';
 import 'substring_highlighted.dart';
@@ -16,6 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Post> posts = [];
   String text = '';
   bool isListening = false;
+  //double taillePolice = 15.0;
 
   void newPost(String text) {
     this.setState(() {
@@ -39,7 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  print("rien");
+                  setState(() {
+                    Police.taillePolice += 3;
+                    print(Police.taillePolice);
+                  });
                 },
                 child: Icon(
                   Icons.zoom_in,
@@ -50,7 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  print("object");
+                  setState(() {
+                    Police.taillePolice -= 3;
+                    print(Police.taillePolice);
+                  });
                 },
                 child: Icon(Icons.zoom_out),
               )),
@@ -98,7 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   mini: true,
                   backgroundColor: Colors.red,
                   onPressed: () {
-                    text = 'Appuyez pour parler';
+                    setState(() {
+                      text = '';
+                    });
                   }),
               FloatingActionButton(
                 heroTag: "bouton parler",

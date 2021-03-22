@@ -1,8 +1,10 @@
+import 'package:ardoise_vocale/police.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'post.dart';
+import 'police.dart';
 
 class PostList extends StatefulWidget {
   final List<Post> listItems;
@@ -38,7 +40,8 @@ class _PostListState extends State<PostList> {
                 ),
                 child: Text(
                   post.body,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(
+                      color: Colors.black, fontSize: Police.taillePolice),
                 ),
               ));
         } else {
@@ -53,7 +56,8 @@ class _PostListState extends State<PostList> {
               ),
               child: Text(
                 post.body,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                    color: Colors.white, fontSize: Police.taillePolice),
               ),
             ),
           );
