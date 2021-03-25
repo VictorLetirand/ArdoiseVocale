@@ -123,6 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     if (text != "") {
                       newPostVoc(text);
+                      setState(() {
+                        text = '';
+                      });
                     }
                   }),
             ],

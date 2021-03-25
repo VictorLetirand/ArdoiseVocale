@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'myHomePage.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class ModeEmploi extends StatefulWidget {
@@ -14,11 +13,7 @@ class _ModeEmploi extends State<ModeEmploi> {
       appBar: AppBar(
         title: Text("Mode d'emploi"),
         leading: IconButton(
-            icon: Icon(Icons.west),
-            onPressed: () => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyHomePage()))
-                }),
+            icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

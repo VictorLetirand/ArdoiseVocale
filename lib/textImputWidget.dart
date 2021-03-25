@@ -19,8 +19,10 @@ class _TextInputWidgetState extends State<TextInputWidget> {
   }
 
   void click() {
-    widget.callback(controller.text);
-    controller.clear();
+    if (controller.text.isNotEmpty && controller.text.trim() != "") {
+      widget.callback(controller.text);
+      controller.clear();
+    }
   }
 
   @override

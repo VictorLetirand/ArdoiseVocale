@@ -50,8 +50,8 @@ class _MyAppState extends State<MyApp> {
       backgroundColor: Colors.grey[350],
       styleTextUnderTheLoader: new TextStyle(),
       photoSize: 200.0,
-      onClick: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage())),
+      //onClick: () => Navigator.push(
+      //   context, MaterialPageRoute(builder: (context) => MyHomePage())),
       loaderColor: Colors.grey[350],
     );
   }

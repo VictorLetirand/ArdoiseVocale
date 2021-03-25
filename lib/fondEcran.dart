@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'myHomePage.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class FondEcran extends StatefulWidget {
@@ -14,11 +13,12 @@ class _FondEcran extends State<FondEcran> {
       appBar: AppBar(
         title: Text("Fonds d'écran"),
         leading: IconButton(
-            icon: Icon(Icons.west),
-            onPressed: () => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyHomePage()))
-                }),
+            icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.upload_sharp),
+              onPressed: () => {Navigator.pop(context)})
+        ],
       ),
       body: Container(
         child: Padding(
