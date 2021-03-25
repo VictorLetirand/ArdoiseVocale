@@ -18,14 +18,14 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Post> posts = [];
   String text = '';
   bool isListening = false;
-  static Color couleurF = Colors.white;
+  Color couleurF = Colors.white;
 
-  /*Color changeColor(Color couleur) {
+  Color changeColor(Color couleur) {
     setState(() {
       couleur = HomeState.couleurFond;
     });
     return couleur;
-  }*/
+  }
 
   void newPost(String text) {
     this.setState(() {
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               )),
         ],
       ),
-      backgroundColor: couleurF,
+      backgroundColor: changeColor(couleurF),
       drawer: MyDrawer(),
       body: Column(
         children: <Widget>[
