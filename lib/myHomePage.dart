@@ -7,6 +7,7 @@ import 'postList.dart';
 import 'substring_highlighted.dart';
 import 'speech_api.dart';
 import 'utils.dart';
+import 'fondEcran2.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -17,7 +18,14 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Post> posts = [];
   String text = '';
   bool isListening = false;
-  //double taillePolice = 15.0;
+  static Color couleurF = Colors.white;
+
+  /*Color changeColor(Color couleur) {
+    setState(() {
+      couleur = HomeState.couleurFond;
+    });
+    return couleur;
+  }*/
 
   void newPost(String text) {
     this.setState(() {
@@ -74,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               )),
         ],
       ),
+      backgroundColor: couleurF,
       drawer: MyDrawer(),
       body: Column(
         children: <Widget>[

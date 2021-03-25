@@ -1,5 +1,6 @@
 import 'package:ardoise_vocale/customListSwitchPonctuation.dart';
 import 'package:ardoise_vocale/fondEcran.dart';
+import 'package:ardoise_vocale/fondEcran2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +61,7 @@ class MyDrawer extends StatelessWidget {
               "Fond d'écran",
               () => {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FondEcran()))
+                        MaterialPageRoute(builder: (context) => Home()))
                   }),
           CustomListTile(Icons.color_lens_rounded,
               'Changer couleur du texte vocal', () => {}),
