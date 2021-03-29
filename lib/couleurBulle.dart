@@ -1,33 +1,47 @@
-import 'package:ardoise_vocale/myHomePage.dart';
+import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'couleurFond.dart';
 
-class Home extends StatefulWidget {
+class CouleurBulle extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new HomeState();
+    return new CouleurBulleState();
   }
 }
 
-class HomeState extends State<Home> {
+class CouleurBulleState extends State<CouleurBulle> {
   int radioGroup = 0;
-  static Color couleurFond = Colors.white;
+  static Color couleurBulleSend = CouleurFond.backColor;
+  static Color couleurBulleReceive = CouleurFond.backColor;
 
   void radioEventHandler(int value) {
     setState(() {
       radioGroup = value;
       switch (radioGroup) {
         case 0:
-          couleurFond = Colors.grey[100];
+          CouleurBulles.bulleSend = Colors.grey[100];
+          CouleurBulles.bulleReceive = Colors.grey[100];
+          couleurBulleSend = CouleurFond.backColor;
+          couleurBulleReceive = CouleurFond.backColor;
           break;
         case 1:
-          couleurFond = Colors.white;
+          CouleurBulles.bulleSend = Colors.white;
+          CouleurBulles.bulleReceive = Colors.white;
+          couleurBulleSend = CouleurFond.backColor;
+          couleurBulleReceive = CouleurFond.backColor;
           break;
         case 2:
-          couleurFond = Colors.teal[100];
+          CouleurBulles.bulleSend = Colors.teal[100];
+          CouleurBulles.bulleReceive = Colors.teal[100];
+          couleurBulleSend = CouleurFond.backColor;
+          couleurBulleReceive = CouleurFond.backColor;
           break;
         case 3:
-          couleurFond = Colors.pink[100];
+          CouleurBulles.bulleSend = Colors.pink[100];
+          CouleurBulles.bulleReceive = Colors.pink[100];
+          couleurBulleSend = CouleurFond.backColor;
+          couleurBulleReceive = CouleurFond.backColor;
           break;
       }
     });
@@ -43,11 +57,11 @@ class HomeState extends State<Home> {
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.blue,
-        title: new Text("Fond d'écran"),
+        title: new Text("Couleur des bulles"),
         leading: IconButton(
             icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),
       ),
-      backgroundColor: couleurFond,
+      backgroundColor: CouleurFond.backColor,
       body: new Container(
         child: new ListView(
           children: <Widget>[

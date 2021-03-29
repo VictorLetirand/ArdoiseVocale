@@ -1,3 +1,4 @@
+import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:ardoise_vocale/police.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -12,10 +13,13 @@ class PostList extends StatefulWidget {
   PostList(this.listItems);
 
   @override
-  _PostListState createState() => _PostListState();
+  PostListState createState() => PostListState();
 }
 
-class _PostListState extends State<PostList> {
+class PostListState extends State<PostList> {
+  static Color couleurSend = CouleurBulles.bulleSend;
+  static Color couleurReceive = CouleurBulles.bulleReceive;
+
   void like(Function callback) {
     this.setState(() {
       callback();
@@ -33,7 +37,7 @@ class _PostListState extends State<PostList> {
           return ChatBubble(
               clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
               margin: EdgeInsets.only(top: 20),
-              backGroundColor: Color(0xffE7E7ED),
+              backGroundColor: couleurReceive,
               child: Container(
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width * 0.7,
@@ -49,7 +53,7 @@ class _PostListState extends State<PostList> {
             clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
             alignment: Alignment.topRight,
             margin: EdgeInsets.only(top: 20),
-            backGroundColor: Colors.blue,
+            backGroundColor: couleurSend,
             child: Container(
               constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width * 0.7,

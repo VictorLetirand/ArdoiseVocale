@@ -1,4 +1,6 @@
+import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
+import 'couleurBulles.dart';
 import 'myDrawer.dart';
 import 'post.dart';
 import 'police.dart';
@@ -7,22 +9,35 @@ import 'postList.dart';
 import 'substring_highlighted.dart';
 import 'speech_api.dart';
 import 'utils.dart';
-import 'fondEcran2.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   List<Post> posts = [];
   String text = '';
   bool isListening = false;
-  Color couleurF = Colors.white;
+  static Color couleurF = CouleurFond.backColor;
 
   Color changeColor(Color couleur) {
     setState(() {
-      couleur = HomeState.couleurFond;
+      couleur = CouleurFond.backColor;
+    });
+    return couleur;
+  }
+
+  Color changeColorSend(Color couleur) {
+    setState(() {
+      couleur = CouleurBulles.bulleSend;
+    });
+    return couleur;
+  }
+
+  Color changeColorReceive(Color couleur) {
+    setState(() {
+      couleur = CouleurBulles.bulleReceive;
     });
     return couleur;
   }
@@ -46,7 +61,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Ardoise Vocale"),
         actions: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.only(right: 15.0),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    changeColorReceive(PostListState.couleurReceive);
+                    changeColorSend(PostListState.couleurSend);
+                    print("");
+                  });
+                },
+                child: Icon(
+                  Icons.refresh,
+                  size: 22.0,
+                ),
+              )),
+          Padding(
+              padding: EdgeInsets.only(right: 15.0),
               child: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -60,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.only(right: 15.0),
               child: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -71,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Icon(Icons.zoom_out),
               )),
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.only(right: 15.0),
               child: GestureDetector(
                 onTap: () {
                   setState(() {

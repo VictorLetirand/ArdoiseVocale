@@ -1,6 +1,6 @@
+import 'package:ardoise_vocale/couleurBulle.dart';
 import 'package:ardoise_vocale/customListSwitchPonctuation.dart';
 import 'package:ardoise_vocale/fondEcran.dart';
-import 'package:ardoise_vocale/fondEcran2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -63,17 +63,19 @@ class MyDrawer extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Home()))
                   }),
-          CustomListTile(Icons.color_lens_rounded,
-              'Changer couleur du texte vocal', () => {}),
-          CustomListTile(Icons.color_lens_rounded,
-              'Changer couleur du texte écrit', () => {}),
-          CustomListSwitchSupprime(
-              Icons.delete, 'Effacer en touchant', Icons.delete),
-          CustomListSwitchPonctuation(Icons.priority_high_sharp, 'Ponctuation',
-              Icons.priority_high_sharp),
-          CustomListTile(Icons.mail, 'Envoi par Mail', () => {}),
           CustomListTile(
-              Icons.settings_outlined, 'Paramètres par défaut', () => {})
+              Icons.color_lens_rounded,
+              'Changer couleur des bulles',
+              () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CouleurBulle()))
+                  }),
+          CustomListSwitchSupprime(
+              Icons.delete, 'Effacer la bulle', Icons.delete),
+          CustomListSwitchPonctuation(Icons.priority_high_sharp,
+              'Ponctuation vocale', Icons.priority_high_sharp),
+          CustomListTile(Icons.mail, 'Envoi par Mail', () => {}),
+          CustomListTile(Icons.settings_outlined, 'Réinitialisation', () => {}),
         ],
       ),
     );

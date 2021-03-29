@@ -1,108 +1,96 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'couleurFond.dart';
 
-class FondEcran extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _FondEcran createState() => _FondEcran();
+  State<StatefulWidget> createState() {
+    return new HomeState();
+  }
 }
 
-class _FondEcran extends State<FondEcran> {
+class HomeState extends State<Home> {
+  int radioGroup = 0;
+  static Color couleurFond = CouleurFond.backColor;
+
+  void radioEventHandler(int value) {
+    setState(() {
+      radioGroup = value;
+      switch (radioGroup) {
+        case 0:
+          CouleurFond.backColor = Colors.grey[100];
+          couleurFond = CouleurFond.backColor;
+          break;
+        case 1:
+          CouleurFond.backColor = Colors.white;
+          couleurFond = CouleurFond.backColor;
+          break;
+        case 2:
+          CouleurFond.backColor = Colors.teal[100];
+          couleurFond = CouleurFond.backColor;
+          break;
+        case 3:
+          CouleurFond.backColor = Colors.pink[100];
+          couleurFond = CouleurFond.backColor;
+          break;
+      }
+    });
+  }
+
+  void retour(BuildContext context) {
+    Navigator.pop(context);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Fonds d'écran"),
+    return new Scaffold(
+      appBar: new AppBar(
+        backgroundColor: Colors.blue,
+        title: new Text("Fond d'écran"),
         leading: IconButton(
             icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.upload_sharp),
-              onPressed: () => {Navigator.pop(context)})
-        ],
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Center(
-            child: ListView(
-              children: [
-                CarouselSlider(
-                  items: [
-                    //1st Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: AssetImage("images/flutter-logo.png"),
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-
-                    //2nd Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: AssetImage("images/logo-final.png"),
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-
-                    //3rd Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: AssetImage("images/flutter-logo.png"),
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-
-                    //4th Image of Slider
-                    Container(
-                      margin: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: AssetImage("images/logo-v2.png"),
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ],
-
-                  //Slider Container properties
-                  options: CarouselOptions(
-                    height: 600.0,
-                    enlargeCenterPage: true,
-                    aspectRatio: 16 / 9,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enableInfiniteScroll: true,
-                    //autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    viewportFraction: 0.8,
-                  ),
+      backgroundColor: couleurFond,
+      body: new Container(
+        child: new ListView(
+          children: <Widget>[
+            new Padding(
+              padding: EdgeInsets.all(12.0),
+            ),
+            new Column(
+              children: <Widget>[
+                new RadioListTile<int>(
+                  value: 0,
+                  groupValue: radioGroup,
+                  onChanged: radioEventHandler,
+                  title: new Text('Gris'),
+                  activeColor: Colors.black,
                 ),
+                new RadioListTile<int>(
+                  value: 1,
+                  groupValue: radioGroup,
+                  onChanged: radioEventHandler,
+                  title: new Text('Blanc'),
+                  activeColor: Colors.black,
+                ),
+                new RadioListTile<int>(
+                  value: 2,
+                  groupValue: radioGroup,
+                  onChanged: radioEventHandler,
+                  title: new Text('Vert'),
+                  activeColor: Colors.black,
+                ),
+                new RadioListTile<int>(
+                  value: 3,
+                  groupValue: radioGroup,
+                  onChanged: radioEventHandler,
+                  title: new Text('Rose'),
+                  activeColor: Colors.black,
+                )
               ],
             ),
-            /*Container(
-                  margin: EdgeInsets.all(25),
-                  child: FlatButton(
-                    child: Text(
-                      'LogIn',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    color: Colors.blueAccent,
-                    textColor: Colors.white,
-                    onPressed: () {},
-                  ),
-                ),*/
-          ),
+          ],
         ),
       ),
     );
