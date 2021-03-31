@@ -76,7 +76,55 @@ class MyDrawer extends StatelessWidget {
               Icons.delete, 'Effacer une bulle', Icons.delete),
           CustomListSwitchPonctuation(Icons.priority_high_sharp,
               'Ponctuation vocale', Icons.priority_high_sharp),
-          CustomListTile(Icons.mail, 'Envoi par Mail', () => {}),
+          CustomListTile(
+              Icons.mail,
+              'Envoi par Mail',
+              () => {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20.0)), //this right here
+                            child: Container(
+                              height: 200,
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextField(
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText:
+                                              'Envoi de la discussion en texte :'),
+                                    ),
+                                    TextField(
+                                      onChanged: (value) {},
+                                      decoration: InputDecoration(
+                                          hintText:
+                                              "Entrez le mail du destinataire"),
+                                    ),
+                                    SizedBox(
+                                      width: 320.0,
+                                      child: RaisedButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          "Envoyer",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        color: const Color(0xFF1BC0C5),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        })
+                  }),
           CustomListTile(Icons.settings_outlined, 'Réinitialisation', () => {}),
           CustomListTile(Icons.exit_to_app_rounded, "Quitter l'application",
               () => {exit(0)}),

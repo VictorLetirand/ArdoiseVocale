@@ -2,60 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Command {
-  static final all = [email, browser1, browser2];
+  static final all = [aled];
 
-  static const email = 'écris un mail';
-  static const browser1 = 'ouvre';
-  static const browser2 = 'va sur';
+  static const aled = 'ffrfrfrfrfrffdcdccscscs';
 }
 
 class Utils {
-  static void scanText(String rawText) {
-    final text = rawText.toLowerCase();
-
-    if (text.contains(Command.email)) {
-      final body = _getTextAfterCommand(text: text, command: Command.email);
-
-      openEmail(body: body);
-    } else if (text.contains(Command.browser1)) {
-      final url = _getTextAfterCommand(text: text, command: Command.browser1);
-
-      openLink(url: url);
-    } else if (text.contains(Command.browser2)) {
-      final url = _getTextAfterCommand(text: text, command: Command.browser2);
-
-      openLink(url: url);
-    }
-  }
-
-  static String _getTextAfterCommand({
-    @required String text,
-    @required String command,
-  }) {
-    final indexCommand = text.indexOf(command);
-    final indexAfter = indexCommand + command.length;
-
-    if (indexCommand == -1) {
-      return null;
-    } else {
-      return text.substring(indexAfter).trim();
-    }
-  }
-
-  static Future openLink({
-    @required String url,
-  }) async {
-    if (url.trim().isEmpty) {
-      await _launchUrl('https://google.com');
-    } else {
-      await _launchUrl('https://$url');
-    }
-  }
-
   static Future openEmail({
+    @required String toEmail,
+    @required String subject,
     @required String body,
   }) async {
-    final url = 'mailto: ?body=${Uri.encodeFull(body)}';
+    final url =
+        'mailto:$toEmail?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(body)}&attachment{';
     await _launchUrl(url);
   }
 
