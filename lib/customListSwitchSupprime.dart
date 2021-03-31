@@ -7,7 +7,7 @@ class CustomListSwitchSupprime extends StatelessWidget {
   IconData icon;
   String text;
   IconData iconOn;
-  bool ponctuation = true;
+  static bool suppression = false;
 
   CustomListSwitchSupprime(this.icon, this.text, this.iconOn);
 
@@ -41,7 +41,7 @@ class CustomListSwitchSupprime extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     LiteRollingSwitch(
-                      value: ponctuation,
+                      value: suppression,
                       textOn: "On",
                       textOff: "Off",
                       colorOn: Colors.greenAccent,
@@ -50,11 +50,11 @@ class CustomListSwitchSupprime extends StatelessWidget {
                       iconOff: Icons.block,
                       textSize: 18.0,
                       onChanged: (bool position) {
-                        if (position == ponctuation) {
-                          ponctuation = true;
+                        if (position == suppression) {
+                          suppression = true;
                           print("ok");
                         } else {
-                          ponctuation = false;
+                          suppression = false;
                           print("no");
                         }
                       },

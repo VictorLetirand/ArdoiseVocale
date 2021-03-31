@@ -14,7 +14,7 @@ class Utils {
     @required String body,
   }) async {
     final url =
-        'mailto:$toEmail?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(body)}&attachment{';
+        'mailto:$toEmail?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(body)}';
     await _launchUrl(url);
   }
 

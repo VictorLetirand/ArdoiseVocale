@@ -18,6 +18,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   List<Post> posts = [];
   String text = '';
+  static String textFinal = '';
   bool isListening = false;
   static Color couleurF = CouleurFond.backColor;
 
@@ -45,12 +46,18 @@ class MyHomePageState extends State<MyHomePage> {
   void newPost(String text) {
     this.setState(() {
       posts.add(new Post(text, "ecris"));
+      textFinal += '\n';
+      textFinal += ' texte écrit : ';
+      textFinal += text;
     });
   }
 
   void newPostVoc(String text) {
     this.setState(() {
       posts.add(new Post(text, "Vocal"));
+      textFinal += '\n';
+      textFinal += ' texte Vocal : ';
+      textFinal += text;
     });
   }
 

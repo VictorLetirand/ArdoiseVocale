@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:ardoise_vocale/couleurBulle.dart';
-import 'package:ardoise_vocale/customListSwitchPonctuation.dart';
 import 'package:ardoise_vocale/fondEcran.dart';
+import 'package:ardoise_vocale/myHomePage.dart';
+import 'package:ardoise_vocale/substring_highlighted.dart';
+import 'package:ardoise_vocale/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,10 @@ import 'customListSwitchSupprime.dart';
 import 'customListTile.dart';
 import 'modeEmploi.dart';
 
+// ignore: must_be_immutable
 class MyDrawer extends StatelessWidget {
+  String mailDestinataire = "";
+
   @override
   Widget build(BuildContext context) {
     return new Drawer(
@@ -32,7 +37,7 @@ class MyDrawer extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(50.0)),
                     elevation: 10,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(7.0),
                       child: Image.asset(
                         'images/logo-transparent.png',
                         width: 80,
@@ -74,8 +79,6 @@ class MyDrawer extends StatelessWidget {
                   }),
           CustomListSwitchSupprime(
               Icons.delete, 'Effacer une bulle', Icons.delete),
-          CustomListSwitchPonctuation(Icons.priority_high_sharp,
-              'Ponctuation vocale', Icons.priority_high_sharp),
           CustomListTile(
               Icons.mail,
               'Envoi par Mail',
@@ -88,31 +91,59 @@ class MyDrawer extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(
                                     20.0)), //this right here
                             child: Container(
-                              height: 200,
+                              height: 250,
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextField(
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText:
-                                              'Envoi de la discussion en texte :'),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SubstringHighlight(
+                                          text:
+                                              "Envoi de la discussion en texte",
+                                          terms: Command.all,
+                                          textStyle: TextStyle(fontSize: 15),
+                                        ),
+                                      ],
                                     ),
                                     TextField(
-                                      onChanged: (value) {},
+                                      onChanged: (value) {
+                                        mailDestinataire = value;
+                                      },
                                       decoration: InputDecoration(
                                           hintText:
-                                              "Entrez le mail du destinataire"),
+                                              "Entrez le mail du destinataire :"),
                                     ),
                                     SizedBox(
                                       width: 320.0,
                                       child: RaisedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Utils.openEmail(
+                                              toEmail: mailDestinataire,
+                                              subject: 'Ardoise Vocale',
+                                              body: MyHomePageState.textFinal);
+                                        },
                                         child: Text(
                                           "Envoyer",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        color: const Color(0xFF1BC0C5),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 320.0,
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          "Quitter l'envoi de mail",
                                           style: TextStyle(color: Colors.white),
                                         ),
                                         color: const Color(0xFF1BC0C5),
