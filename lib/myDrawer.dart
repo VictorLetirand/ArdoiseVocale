@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ardoise_vocale/couleurBulle.dart';
 import 'package:ardoise_vocale/customListSwitchPonctuation.dart';
 import 'package:ardoise_vocale/fondEcran.dart';
@@ -71,11 +73,13 @@ class MyDrawer extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => CouleurBulle()))
                   }),
           CustomListSwitchSupprime(
-              Icons.delete, 'Effacer la bulle', Icons.delete),
+              Icons.delete, 'Effacer une bulle', Icons.delete),
           CustomListSwitchPonctuation(Icons.priority_high_sharp,
               'Ponctuation vocale', Icons.priority_high_sharp),
           CustomListTile(Icons.mail, 'Envoi par Mail', () => {}),
           CustomListTile(Icons.settings_outlined, 'Réinitialisation', () => {}),
+          CustomListTile(Icons.exit_to_app_rounded, "Quitter l'application",
+              () => {exit(0)}),
         ],
       ),
     );

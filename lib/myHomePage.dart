@@ -141,7 +141,7 @@ class MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               FloatingActionButton(
                   heroTag: "bouton annuler",
-                  child: Icon(Icons.cancel),
+                  child: Icon(Icons.edit_off),
                   mini: true,
                   backgroundColor: Colors.red,
                   onPressed: () {
