@@ -4,17 +4,81 @@ import 'package:ardoise_vocale/couleurBulle.dart';
 import 'package:ardoise_vocale/fondEcran.dart';
 import 'package:ardoise_vocale/myHomePage.dart';
 import 'package:ardoise_vocale/substring_highlighted.dart';
+import 'package:ardoise_vocale/testPreview.dart';
 import 'package:ardoise_vocale/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'customListSwitchSupprime.dart';
 import 'customListTile.dart';
 import 'modeEmploi.dart';
 
+//CHANGE
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+
 // ignore: must_be_immutable
 class MyDrawer extends StatelessWidget {
   String mailDestinataire = "";
+  //CHANGE
+  final pdf = pw.Document();
+  static String finalText = "";
+
+  remplirText(List<String> textFinal) {
+    finalText = "";
+    for (int i = 0; i < textFinal.length; i++) {
+      finalText += "\n" + "\n" + textFinal[i];
+    }
+  }
+
+  //CHANGE
+  writeOnPdf() {
+    pdf.addPage(pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        margin: pw.EdgeInsets.all(32),
+        build: (pw.Context context) {
+          return <pw.Widget>[
+            pw.Header(
+              level: 0,
+              child: pw.Text("Texte Ardoise Vocale",
+                  style: pw.TextStyle(fontSize: 50)),
+            ),
+            pw.Paragraph(
+              text: finalText,
+              style: pw.TextStyle(fontSize: 30),
+            ),
+          ];
+        }));
+  }
+
+  //CHANGE
+  Future savePDF() async {
+    Directory documentDirectory = await getApplicationDocumentsDirectory();
+
+    String documentPath = documentDirectory.path;
+
+    File file = File("$documentPath/ardoise.pdf");
+
+    file.writeAsBytesSync(pdf.save());
+  }
+  /*
+  Future<void> send(String mailDestinataire, String path) async {
+    final Email email = Email(
+      body: 'Résumé texte Ardoise Vocale',
+      subject: 'Ardoise Vocale',
+      recipients: [mailDestinataire],
+      attachmentPaths: [path],
+    );
+
+    try {
+      await FlutterEmailSender.send(email);
+    } catch (error) {
+      print(error.toString());
+    }
+  }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -123,11 +187,38 @@ class MyDrawer extends StatelessWidget {
                                     SizedBox(
                                       width: 320.0,
                                       child: RaisedButton(
-                                        onPressed: () {
-                                          Utils.openEmail(
-                                              toEmail: mailDestinataire,
-                                              subject: 'Ardoise Vocale',
-                                              body: MyHomePageState.textFinal);
+                                        onPressed: () async {
+                                          remplirText(
+                                              MyHomePageState.textFinal);
+                                          writeOnPdf();
+                                          //remplirPdf(MyHomePageState.textFinal);
+                                          await savePDF();
+
+                                          Directory documentDirectory =
+                                              await getApplicationDocumentsDirectory();
+
+                                          String documentPath =
+                                              documentDirectory.path;
+
+                                          String fullPath =
+                                              '$documentPath/ardoise.pdf';
+
+                                          Email email = Email(
+                                            body: 'Résumé texte Ardoise Vocale',
+                                            subject: 'Ardoise Vocale',
+                                            recipients: [mailDestinataire],
+                                            //attachmentPaths: [fullPath],
+                                          );
+
+                                          //await FlutterEmailSender.send(email);
+
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PdfPreviewScreen(
+                                                        path: fullPath,
+                                                      )));
                                         },
                                         child: Text(
                                           "Envoyer",

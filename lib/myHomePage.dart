@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:ardoise_vocale/couleurFond.dart';
+import 'package:ardoise_vocale/testPreview.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'couleurBulles.dart';
 import 'myDrawer.dart';
 import 'post.dart';
@@ -18,7 +22,8 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   List<Post> posts = [];
   String text = '';
-  static String textFinal = '';
+  //Change
+  static List<String> textFinal = [];
   bool isListening = false;
   static Color couleurF = CouleurFond.backColor;
 
@@ -46,18 +51,16 @@ class MyHomePageState extends State<MyHomePage> {
   void newPost(String text) {
     this.setState(() {
       posts.add(new Post(text, "ecris"));
-      textFinal += '\n';
-      textFinal += ' texte écrit : ';
-      textFinal += text;
+      //CHANGE
+      textFinal.add("(1) " + text);
     });
   }
 
   void newPostVoc(String text) {
     this.setState(() {
       posts.add(new Post(text, "Vocal"));
-      textFinal += '\n';
-      textFinal += ' texte Vocal : ';
-      textFinal += text;
+      //CHANGE
+      textFinal.add("(2) " + text);
     });
   }
 
@@ -113,6 +116,8 @@ class MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   setState(() {
                     posts.clear();
+                    textFinal.clear();
+                    MyDrawer.finalText = "";
                   });
                 },
                 child: Icon(Icons.delete),
