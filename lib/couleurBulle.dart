@@ -22,26 +22,18 @@ class CouleurBulleState extends State<CouleurBulle> {
         case 0:
           CouleurBulles.bulleSend = Colors.grey[100];
           CouleurBulles.bulleReceive = Colors.grey[100];
-          couleurBulleSend = CouleurFond.backColor;
-          couleurBulleReceive = CouleurFond.backColor;
           break;
         case 1:
           CouleurBulles.bulleSend = Colors.white;
           CouleurBulles.bulleReceive = Colors.white;
-          couleurBulleSend = CouleurFond.backColor;
-          couleurBulleReceive = CouleurFond.backColor;
           break;
         case 2:
           CouleurBulles.bulleSend = Colors.teal[100];
           CouleurBulles.bulleReceive = Colors.teal[100];
-          couleurBulleSend = CouleurFond.backColor;
-          couleurBulleReceive = CouleurFond.backColor;
           break;
         case 3:
           CouleurBulles.bulleSend = Colors.pink[100];
           CouleurBulles.bulleReceive = Colors.pink[100];
-          couleurBulleSend = CouleurFond.backColor;
-          couleurBulleReceive = CouleurFond.backColor;
           break;
       }
     });

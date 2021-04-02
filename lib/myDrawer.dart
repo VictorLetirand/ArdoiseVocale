@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ardoise_vocale/couleurBulle.dart';
 import 'package:ardoise_vocale/fondEcran.dart';
 import 'package:ardoise_vocale/myHomePage.dart';
@@ -9,11 +8,9 @@ import 'package:ardoise_vocale/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'customListSwitchSupprime.dart';
 import 'customListTile.dart';
 import 'modeEmploi.dart';
-
 //CHANGE
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;

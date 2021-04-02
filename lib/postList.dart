@@ -1,4 +1,5 @@
 import 'package:ardoise_vocale/couleurBulles.dart';
+import 'package:ardoise_vocale/customListSwitchSupprime.dart';
 import 'package:ardoise_vocale/police.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -17,9 +18,6 @@ class PostList extends StatefulWidget {
 }
 
 class PostListState extends State<PostList> {
-  static Color couleurSend = CouleurBulles.bulleSend;
-  static Color couleurReceive = CouleurBulles.bulleReceive;
-
   void like(Function callback) {
     this.setState(() {
       callback();
@@ -34,10 +32,85 @@ class PostListState extends State<PostList> {
       itemBuilder: (context, index) {
         var post = this.widget.listItems[index];
         if (post.provenance == 'Vocal') {
-          return ChatBubble(
-              clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
+          if (CustomListSwitchSupprime.suppression) {
+            return Dismissible(
+              key: UniqueKey(),
+              background: Container(
+                color: Colors.red,
+              ),
+              child: ChatBubble(
+                  clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
+                  margin: EdgeInsets.only(top: 20),
+                  backGroundColor: CouleurBulles.bulleReceive,
+                  child: Container(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.7,
+                    ),
+                    child: Text(
+                      post.body,
+                      style: TextStyle(
+                          color: Colors.black, fontSize: Police.taillePolice),
+                    ),
+                  )),
+              onDismissed: (direction) {
+                // index
+                setState(() {
+                  this.widget.listItems.removeAt(index);
+                });
+              },
+            );
+          } else {
+            return ChatBubble(
+                clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
+                margin: EdgeInsets.only(top: 20),
+                backGroundColor: CouleurBulles.bulleReceive,
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.7,
+                  ),
+                  child: Text(
+                    post.body,
+                    style: TextStyle(
+                        color: Colors.black, fontSize: Police.taillePolice),
+                  ),
+                ));
+          }
+        } else {
+          if (CustomListSwitchSupprime.suppression) {
+            return Dismissible(
+              key: UniqueKey(),
+              background: Container(
+                color: Colors.red,
+              ),
+              child: ChatBubble(
+                clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
+                alignment: Alignment.topRight,
+                margin: EdgeInsets.only(top: 20),
+                backGroundColor: CouleurBulles.bulleSend,
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.7,
+                  ),
+                  child: Text(
+                    post.body,
+                    style: TextStyle(
+                        color: Colors.white, fontSize: Police.taillePolice),
+                  ),
+                ),
+              ),
+              onDismissed: (direction) {
+                // index
+                setState(() {
+                  this.widget.listItems.removeAt(index);
+                });
+              },
+            );
+          } else {
+            return ChatBubble(
+              clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
+              alignment: Alignment.topRight,
               margin: EdgeInsets.only(top: 20),
-              backGroundColor: couleurReceive,
+              backGroundColor: CouleurBulles.bulleSend,
               child: Container(
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width * 0.7,
@@ -45,28 +118,12 @@ class PostListState extends State<PostList> {
                 child: Text(
                   post.body,
                   style: TextStyle(
-                      color: Colors.black, fontSize: Police.taillePolice),
+                      color: Colors.white, fontSize: Police.taillePolice),
                 ),
-              ));
-        } else {
-          return ChatBubble(
-            clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
-            alignment: Alignment.topRight,
-            margin: EdgeInsets.only(top: 20),
-            backGroundColor: couleurSend,
-            child: Container(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.7,
               ),
-              child: Text(
-                post.body,
-                style: TextStyle(
-                    color: Colors.white, fontSize: Police.taillePolice),
-              ),
-            ),
-          );
+            );
+          }
         }
-        //return Dismissible(key: null, child: null);
       },
     );
   }

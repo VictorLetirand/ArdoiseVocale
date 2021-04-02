@@ -1,10 +1,5 @@
-import 'dart:io';
-
 import 'package:ardoise_vocale/couleurFond.dart';
-import 'package:ardoise_vocale/testPreview.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'couleurBulles.dart';
 import 'myDrawer.dart';
 import 'post.dart';
 import 'police.dart';
@@ -34,25 +29,11 @@ class MyHomePageState extends State<MyHomePage> {
     return couleur;
   }
 
-  Color changeColorSend(Color couleur) {
-    setState(() {
-      couleur = CouleurBulles.bulleSend;
-    });
-    return couleur;
-  }
-
-  Color changeColorReceive(Color couleur) {
-    setState(() {
-      couleur = CouleurBulles.bulleReceive;
-    });
-    return couleur;
-  }
-
   void newPost(String text) {
     this.setState(() {
       posts.add(new Post(text, "ecris"));
       //CHANGE
-      textFinal.add("(1) " + text);
+      textFinal.add("(écrit) " + text);
     });
   }
 
@@ -60,7 +41,7 @@ class MyHomePageState extends State<MyHomePage> {
     this.setState(() {
       posts.add(new Post(text, "Vocal"));
       //CHANGE
-      textFinal.add("(2) " + text);
+      textFinal.add("(Vocal) " + text);
     });
   }
 
@@ -75,8 +56,6 @@ class MyHomePageState extends State<MyHomePage> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    changeColorReceive(PostListState.couleurReceive);
-                    changeColorSend(PostListState.couleurSend);
                     print("");
                   });
                 },

@@ -50,7 +50,7 @@ class CustomListSwitchSupprime extends StatelessWidget {
                       iconOff: Icons.block,
                       textSize: 18.0,
                       onChanged: (bool position) {
-                        if (position == suppression) {
+                        if (position) {
                           suppression = true;
                           print("ok");
                         } else {
