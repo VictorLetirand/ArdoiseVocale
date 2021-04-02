@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'myDrawer.dart';
 import 'post.dart';
 import 'police.dart';
@@ -21,6 +24,20 @@ class MyHomePageState extends State<MyHomePage> {
   static List<String> textFinal = [];
   bool isListening = false;
   static Color couleurF = CouleurFond.backColor;
+
+  saveValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('police', Police.taillePolice);
+  }
+
+  static getValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    double police = prefs.getDouble('police');
+    return police;
+  }
+
+  static double police = getValue();
 
   Color changeColor(Color couleur) {
     setState(() {
@@ -71,6 +88,7 @@ class MyHomePageState extends State<MyHomePage> {
                   setState(() {
                     Police.taillePolice += 3;
                     print(Police.taillePolice);
+                    saveValue();
                   });
                 },
                 child: Icon(
@@ -85,6 +103,7 @@ class MyHomePageState extends State<MyHomePage> {
                   setState(() {
                     Police.taillePolice -= 3;
                     print(Police.taillePolice);
+                    saveValue();
                   });
                 },
                 child: Icon(Icons.zoom_out),
