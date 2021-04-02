@@ -52,7 +52,7 @@ class MyDrawer extends StatelessWidget {
 
   //CHANGE
   Future savePDF() async {
-    Directory documentDirectory = await getApplicationDocumentsDirectory();
+    Directory documentDirectory = await getExternalStorageDirectory();
 
     String documentPath = documentDirectory.path;
 
@@ -60,22 +60,6 @@ class MyDrawer extends StatelessWidget {
 
     file.writeAsBytesSync(pdf.save());
   }
-  /*
-  Future<void> send(String mailDestinataire, String path) async {
-    final Email email = Email(
-      body: 'Résumé texte Ardoise Vocale',
-      subject: 'Ardoise Vocale',
-      recipients: [mailDestinataire],
-      attachmentPaths: [path],
-    );
-
-    try {
-      await FlutterEmailSender.send(email);
-    } catch (error) {
-      print(error.toString());
-    }
-  }
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -188,11 +172,10 @@ class MyDrawer extends StatelessWidget {
                                           remplirText(
                                               MyHomePageState.textFinal);
                                           writeOnPdf();
-                                          //remplirPdf(MyHomePageState.textFinal);
                                           await savePDF();
 
                                           Directory documentDirectory =
-                                              await getApplicationDocumentsDirectory();
+                                              await getExternalStorageDirectory();
 
                                           String documentPath =
                                               documentDirectory.path;
@@ -204,18 +187,10 @@ class MyDrawer extends StatelessWidget {
                                             body: 'Résumé texte Ardoise Vocale',
                                             subject: 'Ardoise Vocale',
                                             recipients: [mailDestinataire],
-                                            //attachmentPaths: [fullPath],
+                                            attachmentPaths: [fullPath],
                                           );
 
-                                          //await FlutterEmailSender.send(email);
-
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PdfPreviewScreen(
-                                                        path: fullPath,
-                                                      )));
+                                          await FlutterEmailSender.send(email);
                                         },
                                         child: Text(
                                           "Envoyer",
