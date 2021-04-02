@@ -3,7 +3,6 @@ import 'package:ardoise_vocale/couleurBulle.dart';
 import 'package:ardoise_vocale/fondEcran.dart';
 import 'package:ardoise_vocale/myHomePage.dart';
 import 'package:ardoise_vocale/substring_highlighted.dart';
-import 'package:ardoise_vocale/testPreview.dart';
 import 'package:ardoise_vocale/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -191,6 +190,7 @@ class MyDrawer extends StatelessWidget {
                                           );
 
                                           await FlutterEmailSender.send(email);
+                                          Navigator.pop(context);
                                         },
                                         child: Text(
                                           "Envoyer",

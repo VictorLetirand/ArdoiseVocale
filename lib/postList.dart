@@ -1,5 +1,6 @@
 import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:ardoise_vocale/customListSwitchSupprime.dart';
+import 'package:ardoise_vocale/myHomePage.dart';
 import 'package:ardoise_vocale/police.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -56,6 +57,7 @@ class PostListState extends State<PostList> {
                 // index
                 setState(() {
                   this.widget.listItems.removeAt(index);
+                  MyHomePageState.textFinal.removeAt(index);
                 });
               },
             );
@@ -102,6 +104,7 @@ class PostListState extends State<PostList> {
                 // index
                 setState(() {
                   this.widget.listItems.removeAt(index);
+                  MyHomePageState.textFinal.removeAt(index);
                 });
               },
             );
