@@ -38,7 +38,53 @@ class PostListState extends State<PostList> {
               key: UniqueKey(),
               background: Container(
                 color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Icon(Icons.delete, color: Colors.white),
+                      Text('Suppression',
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                ),
               ),
+              secondaryBackground: Container(
+                color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Icon(Icons.delete, color: Colors.white),
+                      Text('Suppression',
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                ),
+              ),
+              confirmDismiss: (DismissDirection direction) async {
+                return await showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text("Confirmer la suppression"),
+                      content: const Text(
+                          "Voulez-vous vraiment supprimer cette bulle?"),
+                      actions: <Widget>[
+                        FlatButton(
+                            onPressed: () => Navigator.of(context).pop(true),
+                            child: const Text("Supprimer")),
+                        FlatButton(
+                          onPressed: () => Navigator.of(context).pop(false),
+                          child: const Text("Annuler"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               child: ChatBubble(
                   clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
                   margin: EdgeInsets.only(top: 20),
@@ -83,7 +129,53 @@ class PostListState extends State<PostList> {
               key: UniqueKey(),
               background: Container(
                 color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Icon(Icons.delete, color: Colors.white),
+                      Text('Suppression',
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                ),
               ),
+              secondaryBackground: Container(
+                color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Icon(Icons.delete, color: Colors.white),
+                      Text('Suppression',
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                ),
+              ),
+              confirmDismiss: (DismissDirection direction) async {
+                return await showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text("Confirmer la suppression"),
+                      content: const Text(
+                          "Voulez-vous vraiment supprimer cette bulle?"),
+                      actions: <Widget>[
+                        FlatButton(
+                            onPressed: () => Navigator.of(context).pop(true),
+                            child: const Text("Supprimer")),
+                        FlatButton(
+                          onPressed: () => Navigator.of(context).pop(false),
+                          child: const Text("Annuler"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               child: ChatBubble(
                 clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
                 alignment: Alignment.topRight,

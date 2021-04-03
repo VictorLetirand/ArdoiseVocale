@@ -164,53 +164,69 @@ class MyDrawer extends StatelessWidget {
                                           hintText:
                                               "Entrez le mail du destinataire :"),
                                     ),
-                                    SizedBox(
-                                      width: 320.0,
-                                      child: RaisedButton(
-                                        onPressed: () async {
-                                          remplirText(
-                                              MyHomePageState.textFinal);
-                                          writeOnPdf();
-                                          await savePDF();
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 320.0,
+                                          child: RaisedButton(
+                                            onPressed: () async {
+                                              remplirText(
+                                                  MyHomePageState.textFinal);
+                                              writeOnPdf();
+                                              await savePDF();
 
-                                          Directory documentDirectory =
-                                              await getExternalStorageDirectory();
+                                              Directory documentDirectory =
+                                                  await getExternalStorageDirectory();
 
-                                          String documentPath =
-                                              documentDirectory.path;
+                                              String documentPath =
+                                                  documentDirectory.path;
 
-                                          String fullPath =
-                                              '$documentPath/ardoise.pdf';
+                                              String fullPath =
+                                                  '$documentPath/ardoise.pdf';
 
-                                          Email email = Email(
-                                            body: 'Résumé texte Ardoise Vocale',
-                                            subject: 'Ardoise Vocale',
-                                            recipients: [mailDestinataire],
-                                            attachmentPaths: [fullPath],
-                                          );
+                                              Email email = Email(
+                                                body:
+                                                    'Résumé texte Ardoise Vocale',
+                                                subject: 'Ardoise Vocale',
+                                                recipients: [mailDestinataire],
+                                                attachmentPaths: [fullPath],
+                                              );
 
-                                          await FlutterEmailSender.send(email);
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          "Envoyer",
-                                          style: TextStyle(color: Colors.white),
+                                              await FlutterEmailSender.send(
+                                                  email);
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "Envoyer",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            color: const Color(0xFF1BC0C5),
+                                          ),
                                         ),
-                                        color: const Color(0xFF1BC0C5),
-                                      ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      width: 320.0,
-                                      child: RaisedButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          "Quitter l'envoi de mail",
-                                          style: TextStyle(color: Colors.white),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 320.0,
+                                          child: RaisedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "Quitter l'envoi de mail",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            color: const Color(0xFF1BC0C5),
+                                          ),
                                         ),
-                                        color: const Color(0xFF1BC0C5),
-                                      ),
+                                      ],
                                     )
                                   ],
                                 ),
