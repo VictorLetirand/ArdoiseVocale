@@ -192,7 +192,7 @@ class MyHomePageState extends State<MyHomePage> {
                   }),
               FloatingActionButton(
                 heroTag: "bouton ?",
-                child: Icon(Icons.help_outline, size: 30),
+                child: Icon(Icons.help, size: 30),
                 mini: true,
                 onPressed: () {
                   setState(() {
