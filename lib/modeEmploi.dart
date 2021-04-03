@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'couleurFond.dart';
+
 class ModeEmploi extends StatefulWidget {
   @override
   _ModeEmploi createState() => _ModeEmploi();
@@ -15,6 +17,7 @@ class _ModeEmploi extends State<ModeEmploi> {
         leading: IconButton(
             icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),
       ),
+      backgroundColor: CouleurFond.backColor,
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Center(

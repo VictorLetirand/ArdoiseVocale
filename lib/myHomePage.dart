@@ -1,5 +1,6 @@
 import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'myDrawer.dart';
 import 'post.dart';
@@ -73,6 +74,8 @@ class MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   setState(() {
                     print("");
+                    Fluttertoast.showToast(
+                        msg: "Mise à jour de vos paramètres");
                   });
                 },
                 child: Icon(
