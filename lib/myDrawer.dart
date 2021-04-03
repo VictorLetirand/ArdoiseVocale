@@ -66,37 +66,40 @@ class MyDrawer extends StatelessWidget {
     return new Drawer(
       child: ListView(
         children: <Widget>[
-          DrawerHeader(
-            padding: const EdgeInsets.all(0.0),
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(44, 62, 80, 1),
-            ),
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  AvatarGlow(
-                    endRadius: 60.0,
-                    child: Material(
-                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                      elevation: 10,
-                      child: Padding(
-                        padding: const EdgeInsets.all(7.0),
-                        child: Image.asset(
-                          'images/logo-transparent.png',
-                          width: 80,
-                          height: 80,
+          Container(
+            height: 170.0,
+            child: DrawerHeader(
+              padding: const EdgeInsets.all(0.0),
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(44, 62, 80, 1),
+              ),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    AvatarGlow(
+                      endRadius: 60.0,
+                      child: Material(
+                        borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                        elevation: 10,
+                        child: Padding(
+                          padding: const EdgeInsets.all(7.0),
+                          child: Image.asset(
+                            'images/logo-transparent.png',
+                            width: 80,
+                            height: 80,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Paramètres',
-                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Paramètres',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
