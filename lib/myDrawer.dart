@@ -14,6 +14,7 @@ import 'modeEmploi.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 // ignore: must_be_immutable
 class MyDrawer extends StatelessWidget {
@@ -66,33 +67,32 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           DrawerHeader(
+            padding: const EdgeInsets.all(0.0),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[
-                  Colors.blue[900],
-                  Colors.blue[300],
-                ],
-              ),
+              color: Color.fromRGBO(44, 62, 80, 1),
             ),
             child: Container(
               child: Column(
                 children: <Widget>[
-                  Material(
-                    borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                    elevation: 10,
-                    child: Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Image.asset(
-                        'images/logo-transparent.png',
-                        width: 80,
-                        height: 80,
+                  AvatarGlow(
+                    endRadius: 60.0,
+                    child: Material(
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      elevation: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(7.0),
+                        child: Image.asset(
+                          'images/logo-transparent.png',
+                          width: 80,
+                          height: 80,
+                        ),
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Paramètre',
+                      'Paramètres',
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     ),
                   ),
@@ -169,7 +169,7 @@ class MyDrawer extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         SizedBox(
-                                          width: 320.0,
+                                          width: 250.0,
                                           child: RaisedButton(
                                             onPressed: () async {
                                               remplirText(
@@ -213,7 +213,7 @@ class MyDrawer extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         SizedBox(
-                                          width: 320.0,
+                                          width: 250.0,
                                           child: RaisedButton(
                                             onPressed: () {
                                               Navigator.pop(context);

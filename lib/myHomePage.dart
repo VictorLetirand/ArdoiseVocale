@@ -65,6 +65,7 @@ class MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Ardoise Vocale"),
+        backgroundColor: Color.fromRGBO(44, 62, 80, 1),
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 15.0),
