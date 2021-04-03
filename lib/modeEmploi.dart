@@ -13,6 +13,7 @@ class _ModeEmploi extends State<ModeEmploi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(44, 62, 80, 1),
         title: Text("Mode d'emploi"),
         leading: IconButton(
             icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),

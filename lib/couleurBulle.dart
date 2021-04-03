@@ -76,7 +76,7 @@ class CouleurBulleState extends State<CouleurBulle> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromRGBO(44, 62, 80, 1),
         title: new Text("Couleur des bulles"),
         leading: IconButton(
             icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),

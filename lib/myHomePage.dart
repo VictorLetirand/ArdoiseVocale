@@ -150,7 +150,7 @@ class MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               FloatingActionButton(
@@ -162,34 +162,39 @@ class MyHomePageState extends State<MyHomePage> {
                   exit(0);
                 },
               ),
-              FloatingActionButton(
-                  heroTag: "bouton annuler",
-                  child: Icon(Icons.edit_off),
-                  mini: true,
-                  backgroundColor: Colors.orange,
-                  onPressed: () {
-                    setState(() {
-                      text = '';
-                    });
-                  }),
-              FloatingActionButton(
-                heroTag: "bouton parler",
-                child: Icon(isListening ? Icons.mic : Icons.mic_none, size: 36),
-                onPressed: toggleRecording,
+              Row(
+                children: [
+                  FloatingActionButton(
+                      heroTag: "bouton annuler",
+                      child: Icon(Icons.edit_off),
+                      mini: true,
+                      backgroundColor: Colors.orange,
+                      onPressed: () {
+                        setState(() {
+                          text = '';
+                        });
+                      }),
+                  FloatingActionButton(
+                    heroTag: "bouton parler",
+                    child: Icon(isListening ? Icons.mic : Icons.mic_none,
+                        size: 36),
+                    onPressed: toggleRecording,
+                  ),
+                  FloatingActionButton(
+                      heroTag: "bouton Valider",
+                      child: Icon(Icons.check),
+                      mini: true,
+                      backgroundColor: Colors.green,
+                      onPressed: () {
+                        if (text != "") {
+                          newPostVoc(text);
+                          setState(() {
+                            text = '';
+                          });
+                        }
+                      }),
+                ],
               ),
-              FloatingActionButton(
-                  heroTag: "bouton Valider",
-                  child: Icon(Icons.check),
-                  mini: true,
-                  backgroundColor: Colors.green,
-                  onPressed: () {
-                    if (text != "") {
-                      newPostVoc(text);
-                      setState(() {
-                        text = '';
-                      });
-                    }
-                  }),
               FloatingActionButton(
                 heroTag: "bouton ?",
                 child: Icon(Icons.help, size: 30),
