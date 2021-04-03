@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -152,10 +154,19 @@ class MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               FloatingActionButton(
+                heroTag: "bouton Exit",
+                child: Icon(Icons.exit_to_app, size: 30),
+                mini: true,
+                backgroundColor: Colors.red,
+                onPressed: () {
+                  exit(0);
+                },
+              ),
+              FloatingActionButton(
                   heroTag: "bouton annuler",
                   child: Icon(Icons.edit_off),
                   mini: true,
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.orange,
                   onPressed: () {
                     setState(() {
                       text = '';
@@ -179,6 +190,16 @@ class MyHomePageState extends State<MyHomePage> {
                       });
                     }
                   }),
+              FloatingActionButton(
+                heroTag: "bouton ?",
+                child: Icon(Icons.help_outline, size: 30),
+                mini: true,
+                onPressed: () {
+                  setState(() {
+                    text += ' ?';
+                  });
+                },
+              ),
             ],
           ),
           TextInputWidget(this.newPost),
