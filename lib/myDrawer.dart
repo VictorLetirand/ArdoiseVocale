@@ -124,8 +124,11 @@ class MyDrawer extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CouleurBulle()))
                   }),
-          CustomListSwitchSupprime(
-              Icons.delete, 'Effacer une bulle', Icons.delete),
+          Container(
+            height: 60,
+            child: CustomListSwitchSupprime(
+                Icons.delete, 'Effacer une bulle', Icons.delete),
+          ),
           CustomListTile(
               Icons.mail,
               'Envoi par Mail',
