@@ -4,6 +4,7 @@ import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'fondEcran.dart';
 import 'myDrawer.dart';
 import 'post.dart';
 import 'police.dart';
@@ -46,11 +47,50 @@ class MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Color changeColor(Color couleur) {
+  @override
+  void initState() {
+    HomeState.getBackgroundPreferences().then(updateBackgroundColor);
+    print(CouleurFond.backCodeColor);
+    super.initState();
+  }
+
+  void updateBackgroundColor(int backCodeColor) {
     setState(() {
-      couleur = CouleurFond.backColor;
+      if (backCodeColor == 0) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Colors.grey[100];
+      } else if (backCodeColor == 1) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Colors.white;
+      } else if (backCodeColor == 2) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Colors.teal[100];
+      } else if (backCodeColor == 3) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Colors.pink[100];
+      } else if (backCodeColor == 4) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Color.fromRGBO(44, 62, 80, 1);
+      } else if (backCodeColor == 5) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Color.fromRGBO(108, 92, 231, 1);
+      } else if (backCodeColor == 6) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Color.fromRGBO(255, 234, 167, 1);
+      } else if (backCodeColor == 7) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Color.fromRGBO(61, 61, 61, 1);
+      } else if (backCodeColor == 8) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Color.fromRGBO(24, 220, 255, 1);
+      } else if (backCodeColor == 9) {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Color.fromRGBO(204, 174, 98, 1);
+      } else {
+        CouleurFond.backCodeColor = backCodeColor;
+        CouleurFond.backColor = Color.fromRGBO(255, 121, 63, 1);
+      }
     });
-    return couleur;
   }
 
   void newPost(String text) {
@@ -132,7 +172,7 @@ class MyHomePageState extends State<MyHomePage> {
               )),
         ],
       ),
-      backgroundColor: changeColor(couleurF),
+      backgroundColor: CouleurFond.backColor,
       drawer: MyDrawer(),
       body: Column(
         children: <Widget>[

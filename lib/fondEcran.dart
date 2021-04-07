@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'couleurFond.dart';
 
 class Home extends StatefulWidget {
@@ -11,55 +12,86 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
   int radioGroup = 0;
-  static Color couleurFond = CouleurFond.backColor;
 
-  void radioEventHandler(int value) {
+  Future<bool> saveBackgroundPreferences(int background) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('background', CouleurFond.backCodeColor);
+    // ignore: deprecated_member_use
+    return prefs.commit();
+  }
+
+  static Future<int> getBackgroundPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int background = prefs.getInt('background');
+    return background;
+  }
+
+  saveValueBackCode() async {
+    int code = CouleurFond.backCodeColor;
+    saveBackgroundPreferences(code).then((bool comitted) {
+      print("Couleur fond sauvegardée");
+      print(CouleurFond.backCodeColor);
+    });
+  }
+
+  void radioEventHandler(int value) async {
     setState(() {
       radioGroup = value;
       switch (radioGroup) {
         case 0:
           CouleurFond.backColor = Colors.grey[100];
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 0;
+          saveValueBackCode();
           break;
         case 1:
           CouleurFond.backColor = Colors.white;
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 1;
+          saveValueBackCode();
           break;
         case 2:
           CouleurFond.backColor = Colors.teal[100];
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 2;
+          saveValueBackCode();
           break;
         case 3:
           CouleurFond.backColor = Colors.pink[100];
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 3;
+          saveValueBackCode();
           break;
         case 4:
           CouleurFond.backColor = Color.fromRGBO(44, 62, 80, 1);
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 4;
+          saveValueBackCode();
           break;
         case 5:
           CouleurFond.backColor = Color.fromRGBO(108, 92, 231, 1);
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 5;
+          saveValueBackCode();
           break;
         case 6:
           CouleurFond.backColor = Color.fromRGBO(255, 234, 167, 1);
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 6;
+          saveValueBackCode();
           break;
         case 7:
           CouleurFond.backColor = Color.fromRGBO(61, 61, 61, 1);
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 7;
+          saveValueBackCode();
           break;
         case 8:
           CouleurFond.backColor = Color.fromRGBO(24, 220, 255, 1);
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 8;
+          saveValueBackCode();
           break;
         case 9:
           CouleurFond.backColor = Color.fromRGBO(204, 174, 98, 1);
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 9;
+          saveValueBackCode();
           break;
         case 10:
           CouleurFond.backColor = Color.fromRGBO(255, 121, 63, 1);
-          couleurFond = CouleurFond.backColor;
+          CouleurFond.backCodeColor = 10;
+          saveValueBackCode();
           break;
       }
     });
@@ -79,7 +111,7 @@ class HomeState extends State<Home> {
         leading: IconButton(
             icon: Icon(Icons.west), onPressed: () => {Navigator.pop(context)}),
       ),
-      backgroundColor: couleurFond,
+      backgroundColor: CouleurFond.backColor,
       body: new Container(
         child: new ListView(
           children: <Widget>[
