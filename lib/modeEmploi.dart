@@ -56,7 +56,7 @@ class _ModeEmploi extends State<ModeEmploi> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/flutter-logo.png"),
+                        image: AssetImage("images/logo-splash.gif"),
                         //fit: BoxFit.fill,
                       ),
                     ),
