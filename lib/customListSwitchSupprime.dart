@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class CustomListSwitchSupprime extends StatelessWidget {
@@ -10,7 +9,7 @@ class CustomListSwitchSupprime extends StatelessWidget {
   IconData iconOn;
   static bool suppression = false;
 
-  Future<bool> saveSwitchPreferences(bool suppression) async {
+  /*Future<bool> saveSwitchPreferences(bool suppression) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('suppression', suppression);
     // ignore: deprecated_member_use
@@ -28,7 +27,7 @@ class CustomListSwitchSupprime extends StatelessWidget {
     saveSwitchPreferences(suppression).then((bool comitted) {
       print("switch effectué");
     });
-  }
+  }*/
 
   CustomListSwitchSupprime(this.icon, this.text, this.iconOn);
 
@@ -73,11 +72,9 @@ class CustomListSwitchSupprime extends StatelessWidget {
                       onChanged: (bool position) {
                         if (position) {
                           suppression = true;
-                          saveValue();
                           print("ok");
                         } else {
                           suppression = false;
-                          saveValue();
                           print("no");
                         }
                       },
