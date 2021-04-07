@@ -26,19 +26,25 @@ class MyHomePageState extends State<MyHomePage> {
   bool isListening = false;
   static Color couleurF = CouleurFond.backColor;
 
-  saveValue() async {
+  Future<bool> savePolicePreferences(double police) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('police', Police.taillePolice);
+    // ignore: deprecated_member_use
+    return prefs.commit();
   }
 
-  static getValue() async {
+  static Future<double> getPolicePreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
     double police = prefs.getDouble('police');
     return police;
   }
 
-  static double police = getValue();
+  saveValue() async {
+    double police = Police.taillePolice;
+    savePolicePreferences(police).then((bool comitted) {
+      print("police sauvegardée");
+    });
+  }
 
   Color changeColor(Color couleur) {
     setState(() {

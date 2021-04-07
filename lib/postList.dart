@@ -26,6 +26,18 @@ class PostListState extends State<PostList> {
   }
 
   @override
+  void initState() {
+    MyHomePageState.getPolicePreferences().then(updatePolice);
+    super.initState();
+  }
+
+  void updatePolice(double police) {
+    setState(() {
+      Police.taillePolice = police;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: this.widget.listItems.length,
