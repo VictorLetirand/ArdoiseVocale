@@ -8,6 +8,7 @@ import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'post.dart';
 import 'police.dart';
+import 'package:ardoise_vocale/couleurBulle.dart';
 
 class PostList extends StatefulWidget {
   final List<Post> listItems;
@@ -28,12 +29,63 @@ class PostListState extends State<PostList> {
   @override
   void initState() {
     MyHomePageState.getPolicePreferences().then(updatePolice);
+    CouleurBulleState.getBullesPreferences().then(updateBullesColor);
     super.initState();
   }
 
   void updatePolice(double police) {
     setState(() {
       Police.taillePolice = police;
+    });
+  }
+
+  void updateBullesColor(int bullesCodeColor) {
+    setState(() {
+      if (bullesCodeColor == 0) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Colors.blue;
+        CouleurBulles.bulleReceive = Color(0xffE7E7ED);
+      } else if (bullesCodeColor == 1) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Colors.green;
+        CouleurBulles.bulleReceive = Colors.red;
+      } else if (bullesCodeColor == 2) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Colors.green;
+        CouleurBulles.bulleReceive = Colors.grey[100];
+      } else if (bullesCodeColor == 3) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Colors.pink[100];
+        CouleurBulles.bulleReceive = Colors.purple[200];
+      } else if (bullesCodeColor == 4) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Color.fromRGBO(48, 51, 107, 1);
+        CouleurBulles.bulleReceive = Color.fromRGBO(104, 109, 224, 1);
+      } else if (bullesCodeColor == 5) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Color.fromRGBO(34, 166, 179, 1);
+        CouleurBulles.bulleReceive = Color.fromRGBO(126, 214, 223, 1);
+      } else if (bullesCodeColor == 6) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Color.fromRGBO(249, 202, 36, 1);
+        CouleurBulles.bulleReceive = Color.fromRGBO(246, 229, 141, 1);
+      } else if (bullesCodeColor == 7) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Color.fromRGBO(48, 57, 82, 1);
+        CouleurBulles.bulleReceive = Color.fromRGBO(89, 98, 117, 1);
+      } else if (bullesCodeColor == 8) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Color.fromRGBO(234, 32, 39, 1);
+        CouleurBulles.bulleReceive = Color.fromRGBO(238, 90, 36, 1);
+      } else if (bullesCodeColor == 9) {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Color.fromRGBO(18, 137, 167, 1);
+        CouleurBulles.bulleReceive = Color.fromRGBO(18, 203, 196, 1);
+      } else {
+        CouleurBulles.bullesCodeColor = bullesCodeColor;
+        CouleurBulles.bulleSend = Color.fromRGBO(192, 57, 43, 1);
+        CouleurBulles.bulleReceive = Color.fromRGBO(241, 196, 15, 1);
+      }
     });
   }
 

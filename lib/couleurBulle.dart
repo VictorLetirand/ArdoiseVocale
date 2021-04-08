@@ -1,6 +1,7 @@
 import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'couleurFond.dart';
 
 class CouleurBulle extends StatefulWidget {
@@ -12,8 +13,27 @@ class CouleurBulle extends StatefulWidget {
 
 class CouleurBulleState extends State<CouleurBulle> {
   int radioGroup = 0;
-  static Color couleurBulleSend = CouleurFond.backColor;
-  static Color couleurBulleReceive = CouleurFond.backColor;
+
+  Future<bool> saveBullesPreferences(int bulles) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('bulles', CouleurBulles.bullesCodeColor);
+    // ignore: deprecated_member_use
+    return prefs.commit();
+  }
+
+  static Future<int> getBullesPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int bulles = prefs.getInt('bulles');
+    return bulles;
+  }
+
+  saveValueBullesCode() async {
+    int code = CouleurBulles.bullesCodeColor;
+    saveBullesPreferences(code).then((bool comitted) {
+      print("Couleur fond sauvegardée");
+      print(CouleurBulles.bullesCodeColor);
+    });
+  }
 
   void radioEventHandler(int value) {
     setState(() {
@@ -21,47 +41,69 @@ class CouleurBulleState extends State<CouleurBulle> {
       switch (radioGroup) {
         case 0:
           CouleurBulles.bulleSend = Colors.blue;
-          CouleurBulles.bulleReceive = Colors.blue;
+          CouleurBulles.bulleReceive = Color(0xffE7E7ED);
+          CouleurBulles.bullesCodeColor = 0;
+          saveValueBullesCode();
           break;
         case 1:
           CouleurBulles.bulleSend = Colors.green;
           CouleurBulles.bulleReceive = Colors.red;
+          CouleurBulles.bullesCodeColor = 1;
+          saveValueBullesCode();
           break;
         case 2:
           CouleurBulles.bulleSend = Colors.green;
           CouleurBulles.bulleReceive = Colors.grey[100];
+          CouleurBulles.bullesCodeColor = 2;
+          saveValueBullesCode();
           break;
         case 3:
           CouleurBulles.bulleSend = Colors.pink[100];
           CouleurBulles.bulleReceive = Colors.purple[200];
+          CouleurBulles.bullesCodeColor = 3;
+          saveValueBullesCode();
           break;
         case 4:
           CouleurBulles.bulleSend = Color.fromRGBO(48, 51, 107, 1);
           CouleurBulles.bulleReceive = Color.fromRGBO(104, 109, 224, 1);
+          CouleurBulles.bullesCodeColor = 4;
+          saveValueBullesCode();
           break;
         case 5:
           CouleurBulles.bulleSend = Color.fromRGBO(34, 166, 179, 1);
           CouleurBulles.bulleReceive = Color.fromRGBO(126, 214, 223, 1);
+          CouleurBulles.bullesCodeColor = 5;
+          saveValueBullesCode();
           break;
         case 6:
           CouleurBulles.bulleSend = Color.fromRGBO(249, 202, 36, 1);
           CouleurBulles.bulleReceive = Color.fromRGBO(246, 229, 141, 1);
+          CouleurBulles.bullesCodeColor = 6;
+          saveValueBullesCode();
           break;
         case 7:
           CouleurBulles.bulleSend = Color.fromRGBO(48, 57, 82, 1);
           CouleurBulles.bulleReceive = Color.fromRGBO(89, 98, 117, 1);
+          CouleurBulles.bullesCodeColor = 7;
+          saveValueBullesCode();
           break;
         case 8:
           CouleurBulles.bulleSend = Color.fromRGBO(234, 32, 39, 1);
           CouleurBulles.bulleReceive = Color.fromRGBO(238, 90, 36, 1);
+          CouleurBulles.bullesCodeColor = 8;
+          saveValueBullesCode();
           break;
         case 9:
           CouleurBulles.bulleSend = Color.fromRGBO(18, 137, 167, 1);
           CouleurBulles.bulleReceive = Color.fromRGBO(18, 203, 196, 1);
+          CouleurBulles.bullesCodeColor = 9;
+          saveValueBullesCode();
           break;
         case 10:
           CouleurBulles.bulleSend = Color.fromRGBO(192, 57, 43, 1);
           CouleurBulles.bulleReceive = Color.fromRGBO(241, 196, 15, 1);
+          CouleurBulles.bullesCodeColor = 10;
+          saveValueBullesCode();
           break;
       }
     });

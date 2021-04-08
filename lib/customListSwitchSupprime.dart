@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class CustomListSwitchSupprime extends StatelessWidget {
@@ -8,26 +9,27 @@ class CustomListSwitchSupprime extends StatelessWidget {
   String text;
   IconData iconOn;
   static bool suppression = false;
+  static int suppressionCode = 0;
 
-  /*Future<bool> saveSwitchPreferences(bool suppression) async {
+  Future<bool> saveSwitchPreferences(int suppression) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('suppression', suppression);
+    prefs.setInt('suppression', suppressionCode);
     // ignore: deprecated_member_use
     return prefs.commit();
   }
 
-  static Future<bool> getSwitchPreferences() async {
+  static Future<int> getSwitchPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool suppression = prefs.getBool('suppression');
+    int suppression = prefs.getInt('suppression');
     return suppression;
   }
 
-  saveValue() async {
-    bool suppression = CustomListSwitchSupprime.suppression;
+  saveSwitchValue() async {
+    int suppression = suppressionCode;
     saveSwitchPreferences(suppression).then((bool comitted) {
       print("switch effectué");
     });
-  }*/
+  }
 
   CustomListSwitchSupprime(this.icon, this.text, this.iconOn);
 
@@ -72,9 +74,13 @@ class CustomListSwitchSupprime extends StatelessWidget {
                       onChanged: (bool position) {
                         if (position) {
                           suppression = true;
+                          suppressionCode = 1;
+                          saveSwitchValue();
                           print("ok");
                         } else {
                           suppression = false;
+                          suppressionCode = 0;
+                          saveSwitchValue();
                           print("no");
                         }
                       },
