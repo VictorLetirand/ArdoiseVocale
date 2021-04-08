@@ -14,7 +14,7 @@ class CouleurBulle extends StatefulWidget {
 class CouleurBulleState extends State<CouleurBulle> {
   int radioGroup = 0;
 
-  Future<bool> saveBullesPreferences(int bulles) async {
+  static Future<bool> saveBullesPreferences(int bulles) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('bulles', CouleurBulles.bullesCodeColor);
     // ignore: deprecated_member_use
@@ -27,7 +27,7 @@ class CouleurBulleState extends State<CouleurBulle> {
     return bulles;
   }
 
-  saveValueBullesCode() async {
+  static saveValueBullesCode() async {
     int code = CouleurBulles.bullesCodeColor;
     saveBullesPreferences(code).then((bool comitted) {
       print("Couleur fond sauvegardée");

@@ -28,7 +28,7 @@ class MyHomePageState extends State<MyHomePage> {
   bool isListening = false;
   static Color couleurF = CouleurFond.backColor;
 
-  Future<bool> savePolicePreferences(double police) async {
+  static Future<bool> savePolicePreferences(double police) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('police', Police.taillePolice);
     // ignore: deprecated_member_use
@@ -41,7 +41,7 @@ class MyHomePageState extends State<MyHomePage> {
     return police;
   }
 
-  saveValue() async {
+  static saveValue() async {
     double police = Police.taillePolice;
     savePolicePreferences(police).then((bool comitted) {
       print("police sauvegardée");

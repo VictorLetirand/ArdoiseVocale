@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'customListSwitchSupprime.dart';
 import 'customListTile.dart';
+import 'couleurFond.dart';
+import 'couleurBulles.dart';
+import 'police.dart';
 import 'modeEmploi.dart';
 //CHANGE
 import 'package:pdf/pdf.dart';
@@ -241,7 +244,108 @@ class MyDrawer extends StatelessWidget {
                           );
                         })
                   }),
-          CustomListTile(Icons.settings_outlined, 'Réinitialisation', () => {}),
+          CustomListTile(
+              Icons.settings_outlined,
+              'Réinitialisation',
+              () => {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20.0)), //this right here
+                            child: Container(
+                              height: 250,
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            SubstringHighlight(
+                                              text:
+                                                  "Voulez-vous vraiment reinitialiser",
+                                              terms: Command.all,
+                                              textStyle:
+                                                  TextStyle(fontSize: 15),
+                                            ),
+                                            SubstringHighlight(
+                                              text: " les paramètres ?",
+                                              terms: Command.all,
+                                              textStyle:
+                                                  TextStyle(fontSize: 15),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 250.0,
+                                          child: RaisedButton(
+                                            onPressed: () {
+                                              Police.taillePolice = 15.0;
+                                              MyHomePageState.saveValue();
+                                              CouleurFond.backColor =
+                                                  Colors.white;
+                                              HomeState.saveValueBackCode();
+                                              CouleurBulles.bulleSend =
+                                                  Colors.blue;
+                                              CouleurBulles.bulleReceive =
+                                                  Color(0xffE7E7ED);
+                                              CouleurBulleState
+                                                  .saveValueBullesCode();
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "OUI",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            color: const Color(0xFF1BC0C5),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 250.0,
+                                          child: RaisedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "NON",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            color: const Color(0xFF1BC0C5),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        })
+                  }),
           CustomListTile(Icons.exit_to_app_rounded, "Quitter l'application",
               () => {exit(0)}),
         ],

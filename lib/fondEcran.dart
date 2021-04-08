@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   int radioGroup = 0;
 
-  Future<bool> saveBackgroundPreferences(int background) async {
+  static Future<bool> saveBackgroundPreferences(int background) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('background', CouleurFond.backCodeColor);
     // ignore: deprecated_member_use
@@ -26,7 +26,7 @@ class HomeState extends State<Home> {
     return background;
   }
 
-  saveValueBackCode() async {
+  static saveValueBackCode() async {
     int code = CouleurFond.backCodeColor;
     saveBackgroundPreferences(code).then((bool comitted) {
       print("Couleur fond sauvegardée");
