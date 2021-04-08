@@ -51,25 +51,16 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     HomeState.getBackgroundPreferences().then(updateBackgroundColor);
-    CustomListSwitchSupprime.getSwitchPreferences().then(updateSwitch);
+    //CustomListSwitchSupprime.getSwitchPreferences().then(updateSwitch);
     print(CouleurFond.backCodeColor);
     super.initState();
   }
-
-  void updateSwitch(int switchChange) {
+/*
+  void updateSwitch(bool switchChange) {
     setState(() {
-      switch (switchChange) {
-        case 0:
-          CustomListSwitchSupprime.suppressionCode = switchChange;
-          CustomListSwitchSupprime.suppression = false;
-          break;
-        case 1:
-          CustomListSwitchSupprime.suppressionCode = switchChange;
-          CustomListSwitchSupprime.suppression = true;
-          break;
-      }
+      CustomListSwitchSupprime.suppression = switchChange;
     });
-  }
+  }*/
 
   void updateBackgroundColor(int backCodeColor) {
     setState(() {

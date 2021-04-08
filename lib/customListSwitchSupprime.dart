@@ -9,23 +9,21 @@ class CustomListSwitchSupprime extends StatelessWidget {
   String text;
   IconData iconOn;
   static bool suppression = false;
-  static int suppressionCode = 0;
 
-  Future<bool> saveSwitchPreferences(int suppression) async {
+  Future<bool> saveSwitchPreferences(bool suppression) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('suppression', suppressionCode);
+    prefs.setBool('suppression', suppression);
     // ignore: deprecated_member_use
     return prefs.commit();
   }
 
-  static Future<int> getSwitchPreferences() async {
+  static Future<bool> getSwitchPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int suppression = prefs.getInt('suppression');
+    bool suppression = prefs.getBool('suppression');
     return suppression;
   }
 
   saveSwitchValue() async {
-    int suppression = suppressionCode;
     saveSwitchPreferences(suppression).then((bool comitted) {
       print("switch effectu");
     });
@@ -74,12 +72,10 @@ class CustomListSwitchSupprime extends StatelessWidget {
                       onChanged: (bool position) {
                         if (position) {
                           suppression = true;
-                          suppressionCode = 1;
                           saveSwitchValue();
                           print("ok");
                         } else {
                           suppression = false;
-                          suppressionCode = 0;
                           saveSwitchValue();
                           print("no");
                         }
