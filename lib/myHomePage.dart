@@ -10,9 +10,6 @@ import 'post.dart';
 import 'police.dart';
 import 'textImputWidget.dart';
 import 'postList.dart';
-import 'substring_highlighted.dart';
-import 'speech_api.dart';
-import 'utils.dart';
 //CHANGE
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
