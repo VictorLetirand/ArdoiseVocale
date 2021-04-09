@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
     return Center(
       child: new SplashScreen(
         title: new Text(
-          'ARDOISE VOCALE',
+          "L'ARDOISE VOCALE",
           style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
         ),
         seconds: 6,
