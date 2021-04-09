@@ -73,6 +73,30 @@ class _ModeEmploi extends State<ModeEmploi> {
                       ),
                     ),
                   ),
+
+                  //5th Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/menu.gif"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+
+                  //4th Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/Zoom.gif"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
                 ],
 
                 //Slider Container properties
