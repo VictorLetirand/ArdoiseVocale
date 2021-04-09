@@ -14,6 +14,8 @@ import 'postList.dart';
 import 'substring_highlighted.dart';
 import 'speech_api.dart';
 import 'utils.dart';
+//CHANGE
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -21,11 +23,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
+  //TENTATIVE RECO VOCALE 100% BONNE
+  stt.SpeechToText _speech;
+  bool _isListening = false;
+
+  void _listen() async {
+    if (!_isListening) {
+      bool available = await _speech.initialize(
+        onStatus: (val) => print('onStatus: $val'),
+        onError: (val) => print('onError: $val'),
+      );
+      if (available) {
+        setState(() => _isListening = true);
+        _speech.listen(
+          onResult: (val) => setState(() {
+            text = val.recognizedWords;
+            if (val.hasConfidenceRating && val.confidence > 0) {
+              print('bonjour');
+            }
+          }),
+        );
+      }
+    } else {
+      setState(() => _isListening = false);
+      _speech.stop();
+    }
+  }
+
   List<Post> posts = [];
   String text = '';
   //Change
   static List<String> textFinal = [];
-  bool isListening = false;
   static Color couleurF = CouleurFond.backColor;
 
   static Future<bool> savePolicePreferences(double police) async {
@@ -54,6 +82,7 @@ class MyHomePageState extends State<MyHomePage> {
     //CustomListSwitchSupprime.getSwitchPreferences().then(updateSwitch);
     print(CouleurFond.backCodeColor);
     super.initState();
+    _speech = stt.SpeechToText();
   }
 /*
   void updateSwitch(bool switchChange) {
@@ -186,23 +215,14 @@ class MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Expanded(child: PostList(this.posts)),
           SingleChildScrollView(
-            reverse: true,
-            padding: const EdgeInsets.all(30).copyWith(bottom: 75),
-            child: SubstringHighlight(
-              text: text,
-              terms: Command.all,
-              textStyle: TextStyle(
-                fontSize: 28.0,
-                color: Colors.black,
-                fontWeight: FontWeight.w400,
-              ),
-              textStyleHighlight: TextStyle(
-                fontSize: 32.0,
-                color: Colors.red,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
+              reverse: true,
+              padding: const EdgeInsets.all(30).copyWith(bottom: 75),
+              child: Text(text,
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ))),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -230,9 +250,9 @@ class MyHomePageState extends State<MyHomePage> {
                       }),
                   FloatingActionButton(
                     heroTag: "bouton parler",
-                    child: Icon(isListening ? Icons.mic : Icons.mic_none,
+                    child: Icon(_isListening ? Icons.mic : Icons.mic_none,
                         size: 36),
-                    onPressed: toggleRecording,
+                    onPressed: _listen /*toggleRecording*/,
                   ),
                   FloatingActionButton(
                       heroTag: "bouton Valider",
@@ -266,10 +286,11 @@ class MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
+  /*
   Future toggleRecording() => SpeechApi.toggleRecording(
       onResult: (text) => this.text = text,
       onListening: (isListening) {
         setState(() => this.isListening = isListening);
       });
+      */
 }
