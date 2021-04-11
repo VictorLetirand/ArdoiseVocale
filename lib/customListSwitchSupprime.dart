@@ -8,7 +8,7 @@ class CustomListSwitchSupprime extends StatelessWidget {
   IconData icon;
   String text;
   IconData iconOn;
-  static bool suppression = false;
+  static bool suppression = true;
 
   Future<bool> saveSwitchPreferences(bool suppression) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
