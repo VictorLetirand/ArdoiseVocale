@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:ardoise_vocale/couleurBulle.dart';
+import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -248,7 +250,7 @@ class MyHomePageState extends State<MyHomePage> {
                     heroTag: "bouton parler",
                     child: Icon(_isListening ? Icons.mic : Icons.mic_none,
                         size: 36),
-                    onPressed: _listen /*toggleRecording*/,
+                    onPressed: _listen,
                   ),
                   FloatingActionButton(
                       heroTag: "bouton Valider",

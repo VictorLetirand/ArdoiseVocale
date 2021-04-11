@@ -30,7 +30,7 @@ class CouleurBulleState extends State<CouleurBulle> {
   static saveValueBullesCode() async {
     int code = CouleurBulles.bullesCodeColor;
     saveBullesPreferences(code).then((bool comitted) {
-      print("Couleur fond sauvegardée");
+      print("Couleur bulles sauvegardée");
       print(CouleurBulles.bullesCodeColor);
     });
   }

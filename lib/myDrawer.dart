@@ -298,9 +298,11 @@ class MyDrawer extends StatelessWidget {
                                             onPressed: () {
                                               Police.taillePolice = 15.0;
                                               MyHomePageState.saveValue();
+                                              CouleurFond.backCodeColor = 1;
                                               CouleurFond.backColor =
                                                   Colors.white;
                                               HomeState.saveValueBackCode();
+                                              CouleurBulles.bullesCodeColor = 0;
                                               CouleurBulles.bulleSend =
                                                   Colors.blue;
                                               CouleurBulles.bulleReceive =
