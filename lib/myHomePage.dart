@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:ardoise_vocale/couleurBulle.dart';
-import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

@@ -21,8 +21,12 @@ class _MyAppState extends State<MyApp> {
     return Center(
       child: new SplashScreen(
         title: new Text(
-          "L'ARDOISE VOCALE",
-          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+          "L' ARDOISE VOCALE",
+          style: new TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30.0,
+            fontFamily: 'RaleWay',
+          ),
         ),
         seconds: 6,
         navigateAfterSeconds: MyHomePage(),

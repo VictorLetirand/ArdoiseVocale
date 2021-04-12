@@ -87,8 +87,20 @@ flutter:
     - images/logo-transparent.png
     - images/logo-v2.png
     - images/logo-splash.gif
-    - images/menu.gif
-    - images/Zoom.gif
+    - images/ME_1.png
+    - images/ME_2.png
+    - images/ME_3.png
+    - images/ME_4.png
+    - images/ME_5.png
+    - images/ME_6.png
+    - images/ME_7.png
+    - images/ME_8.png
+    - images/ME_9.png
+    - images/ME_10.png
+    - images/ME_START.png
+    - images/ME_END.png
+
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

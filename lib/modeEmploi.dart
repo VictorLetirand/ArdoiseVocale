@@ -26,73 +26,145 @@ class _ModeEmploi extends State<ModeEmploi> {
             children: [
               CarouselSlider(
                 items: [
+                  //START Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/ME_START.png"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+
                   //1st Image of Slider
                   Container(
                     margin: EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/flutter-logo.png"),
+                        image: AssetImage("images/ME_1.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
                   ),
 
-                  //2nd Image of Slider
+                  //2st Image of Slider
                   Container(
                     margin: EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/logo-final.png"),
+                        image: AssetImage("images/ME_2.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
                   ),
 
-                  //3rd Image of Slider
+                  //3st Image of Slider
                   Container(
                     margin: EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/logo-splash.gif"),
+                        image: AssetImage("images/ME_3.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
                   ),
 
-                  //4th Image of Slider
+                  //4st Image of Slider
                   Container(
                     margin: EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/logo-v2.png"),
+                        image: AssetImage("images/ME_4.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
                   ),
 
-                  //5th Image of Slider
+                  //5st Image of Slider
                   Container(
                     margin: EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/menu.gif"),
+                        image: AssetImage("images/ME_5.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
                   ),
 
-                  //4th Image of Slider
+                  //6st Image of Slider
                   Container(
                     margin: EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/Zoom.gif"),
+                        image: AssetImage("images/ME_6.png"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+
+                  //7st Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/ME_7.png"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+
+                  //8st Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/ME_8.png"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+
+                  //9st Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/ME_9.png"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+
+                  //10st Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/ME_10.png"),
+                        //fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+
+                  //END Image of Slider
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("images/ME_END.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
