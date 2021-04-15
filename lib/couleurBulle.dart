@@ -29,10 +29,7 @@ class CouleurBulleState extends State<CouleurBulle> {
 
   static saveValueBullesCode() async {
     int code = CouleurBulles.bullesCodeColor;
-    saveBullesPreferences(code).then((bool comitted) {
-      print("Couleur bulles sauvegardée");
-      print(CouleurBulles.bullesCodeColor);
-    });
+    saveBullesPreferences(code).then((bool comitted) {});
   }
 
   void radioEventHandler(int value) {

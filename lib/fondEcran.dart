@@ -28,10 +28,7 @@ class HomeState extends State<Home> {
 
   static saveValueBackCode() async {
     int code = CouleurFond.backCodeColor;
-    saveBackgroundPreferences(code).then((bool comitted) {
-      print("Couleur fond sauvegardée");
-      print(CouleurFond.backCodeColor);
-    });
+    saveBackgroundPreferences(code).then((bool comitted) {});
   }
 
   void radioEventHandler(int value) async {

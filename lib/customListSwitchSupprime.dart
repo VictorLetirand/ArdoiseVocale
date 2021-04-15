@@ -24,9 +24,7 @@ class CustomListSwitchSupprime extends StatelessWidget {
   }
 
   saveSwitchValue() async {
-    saveSwitchPreferences(suppression).then((bool comitted) {
-      print("switch effectu");
-    });
+    saveSwitchPreferences(suppression).then((bool comitted) {});
   }
 
   CustomListSwitchSupprime(this.icon, this.text, this.iconOn);

@@ -66,9 +66,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   static saveValue() async {
     double police = Police.taillePolice;
-    savePolicePreferences(police).then((bool comitted) {
-      print("police sauvegardée");
-    });
+    savePolicePreferences(police).then((bool comitted) {});
   }
 
   @override
