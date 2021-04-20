@@ -21,7 +21,8 @@ class _TextInputWidgetState extends State<TextInputWidget> {
 
   void click() {
     if (controller.text.isNotEmpty && controller.text.trim() != "") {
-      widget.callback(controller.text);
+      String texte = controller.text.capitalize();
+      widget.callback(texte);
       controller.clear();
       MyHomePageState.needsScroll = true;
     }

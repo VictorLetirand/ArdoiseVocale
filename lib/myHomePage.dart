@@ -15,6 +15,12 @@ import 'postList.dart';
 //CHANGE
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+
 class MyHomePage extends StatefulWidget {
   @override
   MyHomePageState createState() => MyHomePageState();
@@ -306,7 +312,8 @@ class MyHomePageState extends State<MyHomePage> {
                       backgroundColor: Colors.green,
                       onPressed: () {
                         if (text != "") {
-                          newPostVoc(text);
+                          String texte = text.capitalize();
+                          newPostVoc(texte);
                           setState(() {
                             text = '';
                             needsScroll = true;
