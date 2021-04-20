@@ -259,7 +259,7 @@ class MyHomePageState extends State<MyHomePage> {
           Expanded(child: PostList(this.posts)),
           SingleChildScrollView(
               reverse: true,
-              padding: const EdgeInsets.all(30).copyWith(bottom: 75),
+              padding: const EdgeInsets.all(10).copyWith(bottom: 10),
               child: Text(text,
                   style: TextStyle(
                     fontSize: 28.0,
