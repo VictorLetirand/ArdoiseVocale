@@ -20,6 +20,13 @@ class PostList extends StatefulWidget {
 }
 
 class PostListState extends State<PostList> {
+  static ScrollController _scrollController = ScrollController();
+
+  static scrollToEnd() async {
+    _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 200), curve: Curves.easeInOut);
+  }
+
   void like(Function callback) {
     this.setState(() {
       callback();
@@ -91,7 +98,12 @@ class PostListState extends State<PostList> {
 
   @override
   Widget build(BuildContext context) {
+    if (MyHomePageState.needsScroll) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => scrollToEnd());
+      MyHomePageState.needsScroll = false;
+    }
     return ListView.builder(
+      controller: _scrollController,
       itemCount: this.widget.listItems.length,
       // ignore: missing_return
       itemBuilder: (context, index) {

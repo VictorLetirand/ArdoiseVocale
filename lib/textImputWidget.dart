@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ardoise_vocale/myHomePage.dart';
 
 class TextInputWidget extends StatefulWidget {
   final Function(String) callback;
@@ -22,6 +23,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
     if (controller.text.isNotEmpty && controller.text.trim() != "") {
       widget.callback(controller.text);
       controller.clear();
+      MyHomePageState.needsScroll = true;
     }
   }
 
@@ -33,7 +35,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
             prefixIcon: Icon(Icons.message),
             labelText: "Type un message:",
             suffixIcon: IconButton(
-              icon: Icon(Icons.send),
+              icon: Icon(Icons.check),
               tooltip: "Envoyer le message",
               splashColor: Colors.blue[800],
               onPressed: () => this.click(),

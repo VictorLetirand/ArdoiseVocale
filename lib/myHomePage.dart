@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:ardoise_vocale/couleurBulle.dart';
+import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:ardoise_vocale/couleurFond.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,6 +23,9 @@ class MyHomePageState extends State<MyHomePage> {
   //TENTATIVE RECO VOCALE 100% BONNE
   stt.SpeechToText _speech;
   bool _isListening = false;
+  int firstLaunch = 1;
+  static bool needsScroll = false;
+  static bool changeOnScreen = false;
 
   void _listen() async {
     if (!_isListening) {
@@ -49,7 +54,24 @@ class MyHomePageState extends State<MyHomePage> {
   String text = '';
   //Change
   static List<String> textFinal = [];
-  static Color couleurF = CouleurFond.backColor;
+
+  Future<bool> saveLaunchPreferences(int isFirstLaunched) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('firstLaunch', firstLaunch);
+    // ignore: deprecated_member_use
+    return prefs.commit();
+  }
+
+  Future<int> getLaunchPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int first = prefs.getInt('firstLaunch');
+    return first;
+  }
+
+  saveValueLaunch() async {
+    int first = firstLaunch;
+    saveLaunchPreferences(first).then((bool comitted) {});
+  }
 
   static Future<bool> savePolicePreferences(double police) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -71,18 +93,41 @@ class MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    getLaunchPreferences().then(updateLaunch);
+    /*
+    if (MyHomePageState.firstLaunch == 1) {}
+    MyHomePageState.firstLaunch = 0;
+    saveValueLaunch();*/
+
+    //print(firstLaunch);
     HomeState.getBackgroundPreferences().then(updateBackgroundColor);
     //CustomListSwitchSupprime.getSwitchPreferences().then(updateSwitch);
-    print(CouleurFond.backCodeColor);
+
     super.initState();
     _speech = stt.SpeechToText();
   }
-/*
-  void updateSwitch(bool switchChange) {
+
+  void updateLaunch(int firstAled) {
     setState(() {
-      CustomListSwitchSupprime.suppression = switchChange;
+      if (firstAled == null) {
+        firstLaunch = 1;
+        firstAled = 0;
+        print(firstLaunch);
+        Police.taillePolice = 15.0;
+        saveValue();
+        CouleurFond.backCodeColor = 1;
+        CouleurFond.backColor = Colors.white;
+        HomeState.saveValueBackCode();
+        CouleurBulles.bullesCodeColor = 0;
+        CouleurBulles.bulleSend = Colors.blue;
+        CouleurBulles.bulleReceive = Color(0xffE7E7ED);
+        CouleurBulleState.saveValueBullesCode();
+        firstLaunch = 0;
+      } else {
+        firstLaunch = 0;
+      }
     });
-  }*/
+  }
 
   void updateBackgroundColor(int backCodeColor) {
     setState(() {
@@ -143,7 +188,7 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ardoise Vocale"),
+        title: Text("AV"),
         backgroundColor: Color.fromRGBO(44, 62, 80, 1),
         actions: <Widget>[
           Padding(
@@ -151,28 +196,14 @@ class MyHomePageState extends State<MyHomePage> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    print("");
+                    firstLaunch = 0;
+                    saveValueLaunch();
                     Fluttertoast.showToast(
                         msg: "Mise à jour de vos paramètres");
                   });
                 },
                 child: Icon(
                   Icons.refresh,
-                  size: 22.0,
-                ),
-              )),
-          Padding(
-              padding: EdgeInsets.only(right: 15.0),
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    Police.taillePolice += 3;
-                    print(Police.taillePolice);
-                    saveValue();
-                  });
-                },
-                child: Icon(
-                  Icons.zoom_in,
                   size: 26.0,
                 ),
               )),
@@ -181,12 +212,29 @@ class MyHomePageState extends State<MyHomePage> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    Police.taillePolice -= 3;
-                    print(Police.taillePolice);
+                    Police.taillePolice += 3;
+                    firstLaunch = 0;
                     saveValue();
+                    saveValueLaunch();
                   });
                 },
-                child: Icon(Icons.zoom_out),
+                child: Icon(
+                  Icons.add,
+                  size: 28.0,
+                ),
+              )),
+          Padding(
+              padding: EdgeInsets.only(right: 15.0),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    Police.taillePolice -= 3;
+                    firstLaunch = 0;
+                    saveValue();
+                    saveValueLaunch();
+                  });
+                },
+                child: Icon(Icons.horizontal_rule, size: 28.0),
               )),
           Padding(
               padding: EdgeInsets.only(right: 15.0),
@@ -196,6 +244,8 @@ class MyHomePageState extends State<MyHomePage> {
                     posts.clear();
                     textFinal.clear();
                     MyDrawer.finalText = "";
+                    firstLaunch = 0;
+                    saveValueLaunch();
                   });
                 },
                 child: Icon(Icons.delete),
@@ -239,6 +289,7 @@ class MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           text = '';
+                          _isListening = false;
                         });
                       }),
                   FloatingActionButton(
@@ -257,6 +308,8 @@ class MyHomePageState extends State<MyHomePage> {
                           newPostVoc(text);
                           setState(() {
                             text = '';
+                            needsScroll = true;
+                            _isListening = false;
                           });
                         }
                       }),
