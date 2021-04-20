@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ardoise_vocale/assets/ardoiseIcons.dart';
 import 'package:ardoise_vocale/couleurBulle.dart';
 import 'package:ardoise_vocale/couleurBulles.dart';
 import 'package:ardoise_vocale/couleurFond.dart';
@@ -259,7 +260,7 @@ class MyHomePageState extends State<MyHomePage> {
           Expanded(child: PostList(this.posts)),
           SingleChildScrollView(
               reverse: true,
-              padding: const EdgeInsets.all(10).copyWith(bottom: 10),
+              padding: const EdgeInsets.all(20).copyWith(bottom: 10),
               child: Text(text,
                   style: TextStyle(
                     fontSize: 28.0,
@@ -283,7 +284,7 @@ class MyHomePageState extends State<MyHomePage> {
                 children: [
                   FloatingActionButton(
                       heroTag: "bouton annuler",
-                      child: Icon(Icons.edit_off),
+                      child: Icon(ArdoiseIcons.rubber),
                       mini: true,
                       backgroundColor: Colors.orange,
                       onPressed: () {

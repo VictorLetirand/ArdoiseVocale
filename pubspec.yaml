@@ -99,6 +99,7 @@ flutter:
     - images/ME_10.png
     - images/ME_START.png
     - images/ME_END.png
+    - images/rubber.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -112,12 +113,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: ArdoiseIcons
+      fonts:
+        - asset: images/ArdoiseIcons.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
