@@ -37,7 +37,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
             prefixIcon: Icon(Icons.message),
             labelText: "Type un message:",
             suffixIcon: IconButton(
-              icon: Icon(Icons.check),
+              icon: Icon(Icons.check_box, size: 35.0),
               tooltip: "Envoyer le message",
               splashColor: Colors.blue[800],
               onPressed: () => this.click(),

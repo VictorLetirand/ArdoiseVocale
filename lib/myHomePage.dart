@@ -283,19 +283,24 @@ class MyHomePageState extends State<MyHomePage> {
                 mini: true,
                 backgroundColor: Colors.red,
                 onPressed: () {
-                  return AlertDialog(
-                    title: const Text("Confirmer la fermeture"),
-                    content: const Text(
-                        "Voulez-vous vraiment quitter l'application?"),
-                    actions: <Widget>[
-                      FlatButton(
-                          onPressed: () => {exit(0)},
-                          child: const Text("Quitter")),
-                      FlatButton(
-                        onPressed: () => Navigator.of(context).pop(false),
-                        child: const Text("Annuler"),
-                      ),
-                    ],
+                  return showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Confirmer la fermeture"),
+                        content: const Text(
+                            "Voulez-vous vraiment quitter l'application?"),
+                        actions: <Widget>[
+                          FlatButton(
+                              onPressed: () => exit(0),
+                              child: const Text("Quitter")),
+                          FlatButton(
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: const Text("Annuler"),
+                          ),
+                        ],
+                      );
+                    },
                   );
                 },
               ),
