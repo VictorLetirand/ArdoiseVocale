@@ -22,6 +22,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 // ignore: must_be_immutable
 class MyDrawer extends StatelessWidget {
   String mailDestinataire = "";
+  String messageDev = "";
   //CHANGE
   final pdf = pw.Document();
   static String finalText = "";
@@ -43,11 +44,11 @@ class MyDrawer extends StatelessWidget {
             pw.Header(
               level: 0,
               child: pw.Text("Texte Ardoise Vocale",
-                  style: pw.TextStyle(fontSize: 50)),
+                  style: pw.TextStyle(fontSize: 16)),
             ),
             pw.Paragraph(
               text: finalText,
-              style: pw.TextStyle(fontSize: 30),
+              style: pw.TextStyle(fontSize: 14),
             ),
           ];
         }));
@@ -333,6 +334,103 @@ class MyDrawer extends StatelessWidget {
                                             },
                                             child: Text(
                                               "NON",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            color: const Color(0xFF1BC0C5),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        })
+                  }),
+          CustomListTile(
+              Icons.live_help,
+              'Nous contacter',
+              () => {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20.0)), //this right here
+                            child: Container(
+                              height: 250,
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SubstringHighlight(
+                                          text: "Envoi d'un message à l'équipe",
+                                          terms: Command.all,
+                                          textStyle: TextStyle(fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                    TextField(
+                                      onChanged: (value) {
+                                        messageDev = value;
+                                      },
+                                      decoration: InputDecoration(
+                                          hintText: "Entrez votre message :"),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 250.0,
+                                          child: RaisedButton(
+                                            onPressed: () async {
+                                              Email email = Email(
+                                                body: messageDev,
+                                                subject:
+                                                    "Message à l'équipe de développement",
+                                                recipients: [
+                                                  'ardoisevocale@gmail.com',
+                                                ],
+                                              );
+
+                                              await FlutterEmailSender.send(
+                                                  email);
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "Envoyer",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            color: const Color(0xFF1BC0C5),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 250.0,
+                                          child: RaisedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "Quitter l'envoi d'un message",
                                               style: TextStyle(
                                                   color: Colors.white),
                                             ),

@@ -211,7 +211,7 @@ class MyHomePageState extends State<MyHomePage> {
                 },
                 child: Icon(
                   Icons.refresh,
-                  size: 26.0,
+                  size: 30.0,
                 ),
               )),
           Padding(
@@ -227,7 +227,7 @@ class MyHomePageState extends State<MyHomePage> {
                 },
                 child: Icon(
                   Icons.add,
-                  size: 28.0,
+                  size: 30.0,
                 ),
               )),
           Padding(
@@ -241,7 +241,7 @@ class MyHomePageState extends State<MyHomePage> {
                     saveValueLaunch();
                   });
                 },
-                child: Icon(Icons.horizontal_rule, size: 28.0),
+                child: Icon(Icons.horizontal_rule, size: 32.0),
               )),
           Padding(
               padding: EdgeInsets.only(right: 15.0),
@@ -283,7 +283,20 @@ class MyHomePageState extends State<MyHomePage> {
                 mini: true,
                 backgroundColor: Colors.red,
                 onPressed: () {
-                  exit(0);
+                  return AlertDialog(
+                    title: const Text("Confirmer la fermeture"),
+                    content: const Text(
+                        "Voulez-vous vraiment quitter l'application?"),
+                    actions: <Widget>[
+                      FlatButton(
+                          onPressed: () => {exit(0)},
+                          child: const Text("Quitter")),
+                      FlatButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: const Text("Annuler"),
+                      ),
+                    ],
+                  );
                 },
               ),
               Row(

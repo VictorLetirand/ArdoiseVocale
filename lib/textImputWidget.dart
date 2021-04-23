@@ -25,6 +25,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
       widget.callback(texte);
       controller.clear();
       MyHomePageState.needsScroll = true;
+      FocusScope.of(context).requestFocus(new FocusNode());
     }
   }
 
