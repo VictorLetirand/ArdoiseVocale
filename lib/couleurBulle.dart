@@ -182,7 +182,7 @@ class CouleurBulleState extends State<CouleurBulle> {
                   value: 7,
                   groupValue: radioGroup,
                   onChanged: radioEventHandler,
-                  title: new Text('Gris  / Gris Foncé'),
+                  title: new Text('Gris / Gris Foncé'),
                   activeColor: Colors.red,
                 ),
                 new RadioListTile<int>(

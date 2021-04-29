@@ -56,7 +56,7 @@ class _ModeEmploi extends State<ModeEmploi> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/ME_2.png"),
+                        image: AssetImage("images/ME_3b.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
@@ -79,7 +79,7 @@ class _ModeEmploi extends State<ModeEmploi> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("images/ME_3b.png"),
+                        image: AssetImage("images/ME_2.png"),
                         //fit: BoxFit.fill,
                       ),
                     ),
